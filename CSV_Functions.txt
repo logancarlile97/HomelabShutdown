@@ -1,0 +1,4 @@
+Get SSH Command
+	It needs CSV Filename and the Row inside of the CSV File. 
+	It will return a formatted string that represents an ssh command.
+	Ex output: sssh HostName@IPaddress shutdownCommand
