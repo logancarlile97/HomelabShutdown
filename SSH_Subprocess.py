@@ -16,7 +16,7 @@ def run_ssh_command(ssh_command):
 		ssh_process = subprocess.run(ssh_command, shell=True, stdout = f, text = True)
 		
 		#Logs the return code
-		f.write(f"The return code is: {ssh_process.returncode}")
+		f.write(f"The return code is: {ssh_process.returncode}\n")
 	f.close()
 	
 	#Return code of 0 means 0 errors
