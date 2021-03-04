@@ -1,4 +1,9 @@
 Get SSH Command
 	It needs CSV Filename and the Row inside of the CSV File. 
 	It will return a formatted string that represents an ssh command.
-	Ex output: sssh HostName@IPaddress shutdownCommand
+	Ex output: ssh RemoteUser@IPaddress shutdownCommand
+
+get_row_count 
+	This function will gather how many rows are in CSV file
+	This number will be nessacary later in the program
+	

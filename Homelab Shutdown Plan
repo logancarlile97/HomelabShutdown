@@ -1,0 +1,17 @@
+Homelab Shutdown Program Plan
+
+Program will be made for a Raspberry Pi.
+
+It will be written in python.
+
+It will need to be able to perform these fuctions:
+	Run commands at root level on local machine
+	Read *.csv files and use values held within
+	Run commands on remote machines using ssh
+	Perform user verification if program is run manually
+
+Features:
+	1. Print information to a physical screen
+	2. Require a user to input a pin on a physical keypad to perform shutdown
+	3. Use a *.csv file to store remote machine details. (IP, remote User, Command)
+	4. Use an aditional *.csv file to run commands on the local raspberry pi
