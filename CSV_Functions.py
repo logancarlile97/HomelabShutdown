@@ -1,7 +1,7 @@
 import csv
 
 #csv file to open
-#csv_file_name = ""
+#csv_file_name = "./test.csv"
 
 #row to gather values from
 #row_number = 1
