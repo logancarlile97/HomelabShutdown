@@ -1,10 +1,10 @@
 import csv
 
 #csv file to open
-csv_file_name = "C:/Users/wesle/Documents/GitHub/HomelabShutdown/test.csv"
+#csv_file_name = ""
 
 #row to gather values from
-row_number = 1
+#row_number = 1
 
 #Function to form an ssh command from specified row in *.csv file
 def get_ssh_command(csv_file, row_number):
