@@ -20,7 +20,7 @@ def run_ssh_command(ssh_command):
 	f.close()
 	
 	#Return code of 0 means 0 errors
-	print(ssh_process.returncode)
+	print(ssh_process.returncode + "\n")
 
 #Example
 run_ssh_command(ssh_command)
