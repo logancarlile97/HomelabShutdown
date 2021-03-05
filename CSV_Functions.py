@@ -31,10 +31,7 @@ def get_remote_info(csv_file, row_number):
 	rmt_usr = csv_list[2].strip()
 	sht_dwn_cmd = csv_list[3].strip()
 		
-	#Take nessacery variables and parse them together into a single string forming ssh_command
-	ssh_command = "ssh" + " " + rmt_usr + "@" + ip + " " + sht_dwn_cmd 
-		
-	return ssh_command, machine_name, ip, rmt_usr, sht_dwn_cmd
+	return machine_name, ip, rmt_usr, sht_dwn_cmd
 
 #Function to count the number of rows in *.csv file
 def get_row_count(csv_file):
@@ -52,6 +49,7 @@ def get_row_count(csv_file):
 	#Closes the file
 	file.close()
 
+#Debugging
 #Sample of using get_row_count
 #row_count = get_row_count(csv_file_name)
 #print(row_count)
