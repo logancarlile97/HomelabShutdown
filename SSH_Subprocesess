@@ -1,0 +1,8 @@
+run_ssh_command
+  Takes machine_name, ip, rmt_user, and sht_dwn_cmd as an argument 
+  Assembles SSH command from rmt_user, ip, and shutDownCmd
+  Pings Machine_Name using rmtIP
+    If Machine_Name was unpingable do not run SSH command and report failure to log
+    If Machine_Name was pingable run SSH command and report sucess to log
+  
+  
