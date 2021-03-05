@@ -7,7 +7,7 @@ import csv
 #row_number = 1
 
 #Function to form an ssh command from specified row in *.csv file
-def get_ssh_command(csv_file, row_number):
+def get_remote_info(csv_file, row_number):
 	
 	#Open the *.csv file and set csv_reader to the open file 
 	with open(csv_file, mode = 'r') as file:
@@ -34,7 +34,7 @@ def get_ssh_command(csv_file, row_number):
 	#Take nessacery variables and parse them together into a single string forming ssh_command
 	ssh_command = "ssh" + " " + rmt_usr + "@" + ip + " " + sht_dwn_cmd 
 		
-	return ssh_command
+	return ssh_command, machine_name, ip, rmt_usr, sht_dwn_cmd
 
 #Function to count the number of rows in *.csv file
 def get_row_count(csv_file):
@@ -57,6 +57,6 @@ def get_row_count(csv_file):
 #print(row_count)
 
 #Sample of using get_ssh_command
-#ssh_command = get_ssh_command(csv_file_name, row_number)
+#ssh_command, machine_name, ip, rmt_usr, sht_dwn_cmd = get_row_info(csv_file_name, row_number)
 #print(ssh_command) 
 
