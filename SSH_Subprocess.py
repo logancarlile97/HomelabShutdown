@@ -15,7 +15,7 @@ def run_ssh_command(ssh_command):
 		ping_command = "ping -c 3 " + ip
 		
 		#Ping the network before trying to connect
-		ping_process = subprocess.run(ping_command)
+		ping_process = subprocess.run(ping_command, shell=True, stdout = f, text = True)
 		ping_code = ping_process.returncode
 		
 		#Check the returncode of ping_process to know if it found a connection.
