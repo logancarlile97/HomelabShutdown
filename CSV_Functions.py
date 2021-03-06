@@ -1,5 +1,8 @@
 import csv
 from datetime import datetime
+import timeKeeper
+import time
+from timeKeeper import deltaStart
 
 #csv file to open
 #csv_file_name = "./test.csv"
@@ -10,45 +13,75 @@ from datetime import datetime
 #Function to form an ssh command from specified row in *.csv file
 def get_remote_info(csv_file, row_number):
 	
-	#Open the *.csv file and set csv_reader to the open file 
-	with open(csv_file, mode = 'r') as file:
-		csv_reader = csv.reader(file, delimiter=',')
-		
-		#Serarch csv_reader for specified row and set csv_list equal to it
-		counter = 0
-		for row in csv_reader:
-			if counter == row_number:
-				csv_list = row
-				break
-			else:
-				counter+=1
-		
-	#Closes the file
-	file.close()
-		
-	#Set each value in csv_list equal to a descriptive variable
-	machine_name = csv_list[0].strip()
-	ip = csv_list[1].strip()
-	rmt_usr = csv_list[2].strip()
-	sht_dwn_cmd = csv_list[3].strip()
-		
-	return machine_name, ip, rmt_usr, sht_dwn_cmd
+	#open log file
+	with open('logs.txt', 'a') as log:
+
+		#Open the *.csv file and set csv_reader to the open file 
+		with open(csv_file, mode = 'r') as file:
+			
+			#log opening of csv_file
+			log.write(f'[{deltaStart()}] ')
+			log.write(f'Opened {csv_file}\n')
+
+			#log row curently being read
+			log.write(f'[{deltaStart()}] ')
+			log.write(f'Reading row {row_number}\n')
+
+			csv_reader = csv.reader(file, delimiter=',')
+			
+			#Serarch csv_reader for specified row and set csv_list equal to it
+			counter = 0
+			for row in csv_reader:
+				if counter == row_number:
+					csv_list = row
+					break
+				else:
+					counter+=1
+			
+		#Closes the file
+		file.close()
+			
+		#Set each value in csv_list equal to a descriptive variable
+		machine_name = csv_list[0].strip()
+		ip = csv_list[1].strip()
+		rmt_usr = csv_list[2].strip()
+		sht_dwn_cmd = csv_list[3].strip()
+
+		#Enter read values to log
+		log.write(f'[{deltaStart()}] ')
+		log.write(f'Machine_Name = {machine_name}\n')
+		log.write(f'[{deltaStart()}] ')
+		log.write(f'IP Address = {ip}\n')
+		log.write(f'[{deltaStart()}] ')
+		log.write(f'Remote User = {rmt_usr}\n')
+		log.write(f'[{deltaStart()}] ')
+		log.write(f'Shutdown Command = {sht_dwn_cmd}\n')
+
+		return machine_name, ip, rmt_usr, sht_dwn_cmd
+	
+	#Close log
+	log.close()
 
 #Function to count the number of rows in *.csv file
 def get_row_count(csv_file):
 	
-	#Open the *.csv file and set csv_reader to the open file
-	with open(csv_file, mode = 'r') as file:
-		csv_reader = csv.reader(file, delimiter=',')
-		
-		#Add one to a counter for every line
-		row_number = 0
-		for row in csv_reader:
-			row_number+=1
-	return row_number
-		
-	#Closes the file
-	file.close()
+	#open log file
+	with open('logs.txt', 'a') as log:
+
+		#Open the *.csv file and set csv_reader to the open file
+		with open(csv_file, mode = 'r') as file:
+			csv_reader = csv.reader(file, delimiter=',')
+			
+			#Add one to a counter for every line
+			row_number = 0
+			for row in csv_reader:
+				row_number+=1
+		return row_number
+			
+		#Closes the file
+		file.close()
+	#Close the log
+	log.close()
 
 #Debugging
 #Sample of using get_row_count
