@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 #csv file to open
 #csv_file_name = "./test.csv"

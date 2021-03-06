@@ -1,5 +1,8 @@
 import subprocess
 from CSV_Functions import get_remote_info
+from datetime import datetime
+import timer
+
 
 #The run_ssh_command needs the get_ssh_command to function. 
 #These are the reqirements for the get_ssh_command.
@@ -15,7 +18,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 	ssh_command = "ssh" + " " + rmt_usr + "@" + ip + " " + sht_dwn_cmd 
 	
 	#Opens a file to log the command ran.
-	with open('ssh_command_log.txt', 'a') as f:
+	with open('logs.txt', 'a') as f:
 		#Log the command and machine_name
 		print(f'Making ssh_command as {machine_name}\nssh_command = {ssh_command}')
 		f.write(f'Made ssh_command as {machine_name}\nssh_command = {ssh_command}')
@@ -51,7 +54,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			#Return code of 0 means 0 errors
 			print('The process finished with a code of ' + str(ssh_process.returncode) + "\n")
 	f.close()
-	
+	print(timer.start)
 	
 	
 

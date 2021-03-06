@@ -1,2 +1,2 @@
 MachineName,IPAddress,RemoteUser,Shudown Command
- localhost, 192.168.1.1 , rmt_usr, ls
+ localhost, 192.168.1.1 , rmt_usr , ls
