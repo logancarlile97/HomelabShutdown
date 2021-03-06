@@ -56,7 +56,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 		if ping_code != 0:
 			
 			#Tell the console what is happening and log it.
-			print(f'Connection failed at: {ip}\nWith a code of {ping_code}')
+			print(f'Connection failed at: {ip} with a code of {ping_code}')
 			log.write(f'[{deltaStart()}]')
 			log.write(f"The ping_process failed with a code of {ping_code}.")
 	
@@ -64,7 +64,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 		else:
 		
 			#Tell the console what is happening
-			print(f'Ping successful.\nSending ssh command to: {ip}\n')
+			print(f'Ping successful.\nSending ssh command to: {ip}')
 			
 			#Calls a subprocess to run the ssh command and logs it
 			log.write(f'[{deltaStart()}]')
@@ -82,9 +82,8 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			
 
 			#Return code of 0 means 0 errors
-			print('The process finished with a code of ' + str(ssh_process.returncode) + "\n")
+			print('The remote process finished with a code of ' + str(ssh_process.returncode) + "\n")
 	log.close()
-	print(timeKeeper.start)
 	
 	
 
