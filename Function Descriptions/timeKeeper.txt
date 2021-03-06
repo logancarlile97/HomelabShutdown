@@ -1,0 +1,10 @@
+timeKeeper.py holds any global varilables needed for the program to keep track of time
+	
+initialize()
+	Creates a global start variable containing the time in which the initialize function was ran
+	
+deltaStart() 
+	Function the finds current time and returns the diffrence in current time and start
+	Also rounds returned delta time to 4
+
+
