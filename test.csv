@@ -1,2 +1,2 @@
 MachineName,IPAddress,RemoteUser,Shudown Command
- RazPi, 192.168.1.1 , RmtCntrl , ls 
+ localhost, 192.168.1.1 , rmt_usr, ls
