@@ -98,7 +98,9 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 		with open('logs.txt', 'a') as log:
 			
 			log.write(f'[{deltaStart()}]')
-			log.write(f'Failed to run ssh command: {str(e)}\n')
+			log.write(f'Failed to run ssh command.\n')
+			log.write(f'[{deltaStart()}]')
+			log.write(f'Exception: {str(e)}\n')
 		
 		#Close log
 		log.close()

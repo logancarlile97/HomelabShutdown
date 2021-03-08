@@ -72,7 +72,9 @@ def get_remote_info(csv_file, row_number):
 		with open('logs.txt', 'a') as log:
 			
 			log.write(f'[{deltaStart()}]')
-			log.write(f'Failed to retrieve remote_info. Check the csv file: {str(e)}\n')
+			log.write(f'Failed to retrieve remote_info. Check the csv file.\n')
+			log.write(f'[{deltaStart()}]')
+			log.write(f'Exception: {str(e)}\n')
 		
 		#Close log
 		log.close()
@@ -109,8 +111,9 @@ def get_row_count(csv_file):
 		with open('logs.txt', 'a') as log:
 			
 			log.write(f'[{deltaStart()}]')
-			log.write(f'Failed to count the rows: {str(e)}\n')
-		
+			log.write(f'Failed to count the rows.\n')
+			log.write(f'[{deltaStart()}]')
+			log.write(f'Exception: {str(e)}\n')
 		#Close log
 		log.close()
 		sys.exit()
