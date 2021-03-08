@@ -1,3 +1,4 @@
-MachineName,IPAddress,RemoteUser,Shudown Command
- localhost, 127.0.0.1 , rmt_usr , ls
+machine_name, ip, rmt_usr, sht_dwn_cmd
+localhost, 127.0.0.1, logan , ls
+
 
