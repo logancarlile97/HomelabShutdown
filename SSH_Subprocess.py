@@ -10,6 +10,8 @@ import timeKeeper
 import time
 from timeKeeper import deltaStart
 
+sshCmdTimeout = False
+
 #The run_ssh_command needs the get_ssh_command to function. 
 #These are the reqirements for the get_ssh_command.
 
@@ -19,9 +21,9 @@ from timeKeeper import deltaStart
 #ssh_command, machine_name, ip, rmt_usr, sht_dwn_cmd = get_remote_info(file_name, row_number)
 
 def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
-	
+
 	#Take nessacery variables and parse them together into a single string forming ssh_command
-	ssh_command = "ssh" + " " + rmt_usr + "@" + ip + " " + sht_dwn_cmd 
+	ssh_command = "ssh" + " " + "-o BatchMode=yes" + " " + rmt_usr + "@" + ip + " " + f"echo 'Conection to {machine_name} sucsessful' && echo" + " && " + sht_dwn_cmd 
 	
 	#Opens a file to log to
 	with open('logs.txt', 'a') as log:
@@ -78,15 +80,16 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			log.write('\n')
 			log.write(f'[{deltaStart()}]')
 			log.write(f'End of SSH Output\n')
-				
-			#Logs the return code
+
+			#Logs and prints the return code if ssh command did not timeout
 			log.write(f'[{deltaStart()}]')
 			log.write(f"The return code is: {ssh_process.returncode}\n")
-			
-			
-
+		
 			#Return code of 0 means 0 errors
 			print('The remote process finished with a code of ' + str(ssh_process.returncode) + "\n")
+			
+
+			
 	log.close()
 	
 	
