@@ -5,8 +5,6 @@
 
 import subprocess
 from CSV_Functions import get_remote_info
-from datetime import datetime
-import timeKeeper
 from timeKeeper import deltaStart
 
 #The run_ssh_command needs the get_ssh_command to function. 

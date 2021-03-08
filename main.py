@@ -1,14 +1,16 @@
 from CSV_Functions import get_row_count, get_remote_info
 from SSH_Subprocess import run_ssh_command
-from datetime import datetime
 import timeKeeper
-
+from timeKeeper import dateToLog
 
 #Start timeKeeper
 timeKeeper.initialize()
 
 #Set the file name and row number
 file_name = './test.csv'
+log_file = './logs.txt'
+#Record a new entry and date to log
+dateToLog(log_file)
 
 #Start with the row after the header info. 
 row_number = 1

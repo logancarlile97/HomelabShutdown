@@ -1,9 +1,8 @@
 import csv
-from datetime import datetime
-import timeKeeper
-
 from timeKeeper import deltaStart
 import sys
+
+#For Debug
 #csv file to open
 #csv_file_name = "./test.csv"
 

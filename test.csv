@@ -1,2 +1,3 @@
 MachineName,IPAddress,RemoteUser,Shudown Command
  localhost, 127.0.0.1 , logan , ls
+  localhost, 127.0.0.1 , tom , ls
