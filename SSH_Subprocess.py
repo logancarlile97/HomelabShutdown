@@ -19,9 +19,10 @@ from timeKeeper import deltaStart
 
 def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 	try:
+
 		
 		#Take nessacery variables and parse them together into a single string forming ssh_command
-		ssh_command = "ssh" + " " + rmt_usr + "@" + ip + " " + sht_dwn_cmd 
+		ssh_command = "ssh" + " " + "-o BatchMode=yes" + " " + rmt_usr + "@" + ip + " " + f"echo 'Conection to {machine_name} sucsessful' && echo" + " && " + sht_dwn_cmd 
 		
 		#Opens a file to log to
 		with open('logs.txt', 'a') as log:
