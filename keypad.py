@@ -53,6 +53,8 @@ def keypadMsge():
                         if (KEYS[i][j] == '#'):
                             
                             #print(message) #For debuging
+                            
+                            #Return the user entered message
                             return message
                             message = ''
 
