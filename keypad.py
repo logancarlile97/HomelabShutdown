@@ -86,6 +86,7 @@ def keypadMsge():
     #Clean GPIO pins if user quits program
     except KeyboardInterrupt:
         GPIO.cleanup()
+        return 'UserExit'
 
     #Print any other errors to terminal
     except Exception as e:
