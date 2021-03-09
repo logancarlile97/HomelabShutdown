@@ -18,7 +18,8 @@ def keypadMsge():
             ['7','8','9','C'],
             ['*','0','#','D'] ]
 
-    #Set the pins for colums and rows
+    #Set the pins for colums and rows, 
+    # make sure they are in the right order or keys will be backwards
     ROW = [37,35,33,31]
     COL = [40,38,36,32]
 
