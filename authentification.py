@@ -45,4 +45,5 @@ def userVerified():
         except KeyboardInterrupt:
             print('User closed program')
             loop = False
-print(userVerified())
+
+#print(userVerified()) #Debugging
