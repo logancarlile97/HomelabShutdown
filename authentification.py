@@ -9,6 +9,11 @@ def userVerified():
     maxAttempts = 3
     timeOut = 1
     lockoutTime = 5
+    
+    #Tell user to input pin on keypad
+    print('User Authentification Required!')
+    print('Please input your pin on the keypad')
+
     while(loop):    
         try:
             #Get user inputed message
@@ -32,7 +37,7 @@ def userVerified():
                 
                 #Increase lockoutTime each time user makes make attempts
                 lockoutTime = timeOut * 5
-                print(f'Max attempts made, try again in {lockoutTime}sec')
+                print(f'Max attempts made, try again in {lockoutTime} seconds')
                 time.sleep(lockoutTime)
                 timeOut += 1
                 attempt = 1
@@ -40,6 +45,7 @@ def userVerified():
 
             else:
                 print('Incorrect pin: User not verified')
+                print('Try Again')
                 attempt += 1
 
         except KeyboardInterrupt:

@@ -64,10 +64,6 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			
 				#Tell the console what is happening
 				print(f'Ping successful.\nSending ssh command to: {ip}\n')
-
-				#Tell user that if program freezes its due to them not having proper ssh keys
-				print(f'If this line remains for a long time your public ssh key are not properly set for user: {rmt_usr} on machine: {machine_name}\n')
-
 				
 				#Calls a subprocess to run the ssh command and logs it
 				log.write(f'[{deltaStart()}]')
