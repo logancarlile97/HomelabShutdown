@@ -1,9 +1,7 @@
 # HomelabShutdown
 Program to shutdown Homelab servers via ssh
 
-Values such as remote IP, remote user, and shutdown command are gathered from a CSV file
-
-Debug Information is added to the logs.txt file
+This program is intended to be used on a Raspberry Pi as it takes use of its GPIO pins
 
 # CSV Usage
 Headers for the CSV file are:
