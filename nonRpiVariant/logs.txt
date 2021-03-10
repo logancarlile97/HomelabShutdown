@@ -1,0 +1,104 @@
+
+-----------------------
+| !!!New log entry!!! |
+| 03/09/2021 17:19:51 |
+-----------------------
+
+[0.0002] Opened ./test.csv
+[0.0002] Reading row 1
+[0.0002] Machine_Name = localhost
+[0.0002] IP Address = 127.0.0.1
+[0.0002] Remote User = pi
+[0.0002] Shutdown Command = /bin/ls
+[0.0003] Made ssh_command for localhost
+[0.0003] ssh_command = ssh -o BatchMode=yes pi@127.0.0.1 'echo 'Conection to localhost sucsessful'&&echo && /bin/ls'
+[0.0003]Ping Output: 
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.017 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.020 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.041 ms
+
+--- 127.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2044ms
+rtt min/avg/max/mdev = 0.017/0.026/0.041/0.010 ms
+
+[2.0466]End of Ping Output
+[2.0466]SSH Output: 
+
+[2.0829]End of SSH Output
+[2.0829]The return code is: 255
+[2.083] Opened ./test.csv
+[2.083] Reading row 2
+[2.0831] Machine_Name = localhost
+[2.0831] IP Address = 127.0.0.1
+[2.0831] Remote User = pi
+[2.0831] Shutdown Command = /bin/ifconfig
+[2.0831] Made ssh_command for localhost
+[2.0831] ssh_command = ssh -o BatchMode=yes pi@127.0.0.1 'echo 'Conection to localhost sucsessful'&&echo && /bin/ifconfig'
+[2.0831]Ping Output: 
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.011 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.019 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.020 ms
+
+--- 127.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2030ms
+rtt min/avg/max/mdev = 0.011/0.016/0.020/0.004 ms
+
+[4.1148]End of Ping Output
+[4.1148]SSH Output: 
+
+[4.1434]End of SSH Output
+[4.1434]The return code is: 255
+
+-----------------------
+| !!!New log entry!!! |
+| 03/09/2021 17:21:06 |
+-----------------------
+
+[0.0002] Opened ./test.csv
+[0.0002] Reading row 1
+[0.0002] Machine_Name = localhost
+[0.0002] IP Address = 127.0.0.1
+[0.0002] Remote User = pi
+[0.0002] Shutdown Command = /bin/ls
+[0.0003] Made ssh_command for localhost
+[0.0003] ssh_command = ssh -o BatchMode=yes pi@127.0.0.1 'echo 'Conection to localhost sucsessful'&&echo && /bin/ls'
+[0.0003]Ping Output: 
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.032 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.017 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.019 ms
+
+--- 127.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2047ms
+rtt min/avg/max/mdev = 0.017/0.022/0.032/0.006 ms
+
+[2.0492]End of Ping Output
+[2.0492]SSH Output: 
+
+[2.0798]End of SSH Output
+[2.0798]The return code is: 255
+[2.08] Opened ./test.csv
+[2.08] Reading row 2
+[2.08] Machine_Name = localhost
+[2.08] IP Address = 127.0.0.1
+[2.08] Remote User = pi
+[2.08] Shutdown Command = /bin/ifconfig
+[2.08] Made ssh_command for localhost
+[2.08] ssh_command = ssh -o BatchMode=yes pi@127.0.0.1 'echo 'Conection to localhost sucsessful'&&echo && /bin/ifconfig'
+[2.0801]Ping Output: 
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.021 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.021 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.019 ms
+
+--- 127.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2056ms
+rtt min/avg/max/mdev = 0.019/0.020/0.021/0.000 ms
+
+[4.1385]End of Ping Output
+[4.1386]SSH Output: 
+
+[4.168]End of SSH Output
+[4.168]The return code is: 255
