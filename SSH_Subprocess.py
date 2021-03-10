@@ -64,7 +64,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			
 				#Tell the console what is happening
 				print(f'Ping successful.\nSending ssh command to: {ip}\n')
-		
+
 				#Calls a subprocess to run the ssh command and logs it
 				log.write(f'[{deltaStart()}]')
 				log.write('SSH Output: \n')

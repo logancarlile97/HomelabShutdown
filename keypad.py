@@ -94,5 +94,4 @@ def keypadMsge():
         print('Exception: ' + str(e))
         GPIO.cleanup()
 
-#Debuging
-#print(keypadMsge())
+#print(keypadMsge())#Debuging

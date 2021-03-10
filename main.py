@@ -4,7 +4,7 @@ from SSH_Subprocess import run_ssh_command
 import timeKeeper
 from timeKeeper import dateToLog
 import sys
-
+import time
 
 #Function to run program
 def mainProgram():
@@ -36,6 +36,9 @@ try:
     #See if the userAuthOverride argument is passed
     if (len(sys.argv) == 2):
         if (sys.argv[1] == 'noAuth'):
+            print(f'Authentication Override Detected!')
+            print('Proceeding with program in 5 seconds')
+            time.sleep(5)
             mainProgram()
         else:
             print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
