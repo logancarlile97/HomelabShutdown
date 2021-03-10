@@ -82,17 +82,17 @@ def userVerified():
             log.close()
         except Exception as e:
 
-		#Tell the console something went wrong.
-		print(f'Something went wrong while running the authenticator: {str(e)} \n')
+		    #Tell the console something went wrong.
+            print(f'Something went wrong while running the authenticator: {str(e)} \n')
+        
+            #Log the fail
+            with open('logs.txt', 'a') as log:
+                
+                log.write(f'[{deltaStart()}]')
+                log.write(f'Authenticator Failed.\n')
+                log.write(f'[{deltaStart()}]')
+                log.write(f'Exception: {str(e)}\n')
 
-		#Log the fail
-		with open('logs.txt', 'a') as log:
-			
-			log.write(f'[{deltaStart()}]')
-			log.write(f'Authenticator Failed.\n')
-			log.write(f'[{deltaStart()}]')
-			log.write(f'Exception: {str(e)}\n')
-		
-		#Close log
-		log.close()
+            #Close log
+            log.close()
 #print(userVerified()) #Debugging
