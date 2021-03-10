@@ -20,12 +20,17 @@ def userVerified():
             
             #open the log
             with open('logs.txt', 'a') as log:
+                #record that authenticator is being used to log
+                log.write(f'[{deltaStart()}] ')
+                log.write(f'Authenticator Initialized: Asking user for pin\n')
+                log.flush()
+                 
                 #Get user inputed message
                 code = keypadMsge()
                 print(f'User inputed: {code}') #For debuging
                 
                 #Record user input to log
-                log.write(deltaStart())
+                log.write(f'[{deltaStart()}] ')
                 log.write(f'User inputed: {code}\n')
                 time.sleep(1)
                 
@@ -41,7 +46,7 @@ def userVerified():
                     print('User verified')
                     
                     #log the a user was verified
-                    log.write(deltaStart())
+                    log.write(f'[{deltaStart()}] ')
                     log.write(f'User was verified proceeding with program\n')
                     
                     loop = False
@@ -55,9 +60,11 @@ def userVerified():
                     print(f'Max attempts made, try again in {lockoutTime} seconds')
 
                     #Log that user was locked out
-                    log.write(deltaStart())
-                    log.write(f'User was locked out for {lockoutTime} seconds\n')
-                    
+                    log.write(f'[{deltaStart()}] ')
+                    log.write(f'User used max number of attempts\n')
+                    log.write(f'[{deltaStart()}] ')
+                    log.write(f'User being locked out for {lockoutTime} seconds\n')
+                    log.flush()
                     #Wait for lockoutTime to expire
                     time.sleep(lockoutTime)
                     timeOut += 1
@@ -69,7 +76,7 @@ def userVerified():
                     print('Try Again')
                    
                     #Log that a user inputed the wrong pin
-                    log.write(deltaStart())
+                    log.write(f'[{deltaStart()}] ')
                     log.write(f'User inputed the wrong pin, attempts are at {attempt} of {maxAttempts}\n')
 
                     attempt += 1
@@ -84,13 +91,16 @@ def userVerified():
 
 		    #Tell the console something went wrong.
             print(f'Something went wrong while running the authenticator: {str(e)} \n')
-        
+            
+            #This is to prevent an infinite loop when an exception occurs
+            loop = False
+
             #Log the fail
             with open('logs.txt', 'a') as log:
                 
-                log.write(f'[{deltaStart()}]')
+                log.write(f'[{deltaStart()}] ')
                 log.write(f'Authenticator Failed.\n')
-                log.write(f'[{deltaStart()}]')
+                log.write(f'[{deltaStart()}] ')
                 log.write(f'Exception: {str(e)}\n')
 
             #Close log
