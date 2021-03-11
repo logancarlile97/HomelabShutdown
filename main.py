@@ -5,14 +5,10 @@ import timeKeeper
 from timeKeeper import dateToLog
 import sys
 import time
+from lcd_driver import lcdInit, lcdMessage, lcdClear
 
 #Function to run program
-def mainProgram():
-    #Set the file name and row number
-    file_name = './test.csv'
-    log_file = './logs.txt'
-    #Record a new entry and date to log
-    dateToLog(log_file)
+def mainProgram(file_name, log_file):
 
     #Start with the row after the header info. 
     row_number = 1
@@ -33,13 +29,25 @@ try:
     #Start timeKeeper
     timeKeeper.initialize()
 
+    #Initialize and clear the lcd
+    lcdInit()    
+    lcdClear()
+    
+    lcdMessage('Homelab Shutdown', '')
+
+    #Set the file name and log file
+    file_name = './test.csv'
+    log_file = './logs.txt'
+
+    #Record time and date program started to log
+    dateToLog(log_file)    
     #See if the userAuthOverride argument is passed
     if (len(sys.argv) == 2):
         if (sys.argv[1] == 'noAuth'):
             print(f'Authentication Override Detected!')
             print('Proceeding with program in 5 seconds')
             time.sleep(5)
-            mainProgram()
+            mainProgram(file_name, log_file)
         else:
             print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
    
@@ -52,10 +60,14 @@ try:
     else:
         #Make user input password to run the main program
         if (userVerified() == True):
-            mainProgram()
-
+            mainProgram(file_name, log_file)
+    lcdMessage('Program has', 'Concluded')
+    time.sleep(3)
+    lcdClear()
 except KeyboardInterrupt:
     print('User quit program')
+    lcdClear()
 
 except Exception as e:
     print(f'main.py had an error: {e}')
+    lcdClear()

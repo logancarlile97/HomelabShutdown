@@ -1,4 +1,3 @@
 MachineName,IPAddress,RemoteUser,Shudown Command
- localhost, 127.0.0.1 , pi , /usr/bin/ls
-  localhost, 127.0.0.1 , pi , /usr/sbin/ifconfig
-  localhost, 127.0.0.1, pi, sudo /usr/sbin/shutdown -r +1
+ FreeNAS, 127.0.0.1 , pi , /usr/bin/ls
+  localhost, 127.0.0.1 , pi , sudo /usr/sbin/shutdown -r +1
