@@ -47,3 +47,9 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. If you are unsure of how to do work with ssh keys then <a href = "https://www.youtube.com/watch?v=vINn1MIrf7o">this</a> is a good video.  
+
+## Running Automatically upon Boot
+Create a cronjob. On the Rasperry Pi this is simple. 
+<ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
+<li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the     program upon reboot of the Raspberry Pi.</li>
+</ul>
