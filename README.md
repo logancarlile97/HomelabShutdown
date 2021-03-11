@@ -3,7 +3,7 @@ Program to shutdown Homelab servers via ssh
 
 This program is intended to be used on a Raspberry Pi as it takes use of its GPIO pins
 
-# CSV Usage
+## CSV Usage
 Headers for the CSV file are:
 <code>Machine_Name, IPAddress, RemoteUser, Shutdown Command</code>
 
@@ -16,7 +16,7 @@ Putting Shutdown Commands in CSV file:
 
 The default CSV file is <code>test.csv</code> however this may be changed in <code>main.py</code>
   
-# Logging
+## Logging
 Most operations are recorded to the log in <code>logs.txt</code>
 
 This log records the time and date the program was run
@@ -25,7 +25,7 @@ Additionally, the log will record how long from program start an entry was made
 
 If your Shutdown Commands do not work the first place to look is in the log
 
-# Connecting to a Remote Machine and Running the Shutdown Command
+## Connecting to a Remote Machine and Running the Shutdown Command
 In order to connect to a remote machine and run a shutdown command you will need to perform these steps
 
 <ul><li>Create a new user on the remote machine to connect to and run the shutdown command</li>
@@ -37,3 +37,13 @@ You must use SSH keys or the program will not be able to connect to the remote m
     <code>ssh-keygen -a 100 -t ed25519</code>
 
 It is highly recommended that you create a new user who's only permision is to run your shutdown command
+
+## Local Shutdown Commands
+
+If you want to perform a shutdown command on the local machine just use the loopback address <code>127.0.0.1</code> in the IP address section of the csv file. An example of this can be found in the test.csv file.
+
+If you want to actually shutdown or reboot the local machine make sure to add a delay of at least one minute before shutdown so that the program has time to close out. 
+
+All local machine commands should be placed at the end of the csv file.
+
+Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. If you are unsure of how to do work with ssh keys then <a href = "https://www.youtube.com/watch?v=vINn1MIrf7o">this</a> is a good video.  
