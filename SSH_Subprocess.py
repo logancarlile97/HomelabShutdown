@@ -6,6 +6,7 @@
 import subprocess
 from CSV_Functions import get_remote_info
 from timeKeeper import deltaStart
+from lcd_driver import lcdMessage, lcdClear
 
 #The run_ssh_command needs the get_ssh_command to function. 
 #These are the reqirements for the get_ssh_command.
@@ -21,9 +22,10 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 		
 		#Take nessacery variables and parse them together into a single string forming ssh_command
 		ssh_command = "ssh" + " " + "-o BatchMode=yes" + " " + rmt_usr + "@" + ip + " '" + f"echo 'Conection to {machine_name} sucsessful'&&echo && {sht_dwn_cmd}" + "'" 
-		
+		lcdMessage('Pinging',f'{machine_name}')
 		#Opens a file to log to
 		with open('logs.txt', 'a') as log:
+			
 			
 			#Log the ssh command and machine_name
 			print(f'Making ssh_command for {machine_name}\nssh_command = {ssh_command}')
@@ -38,6 +40,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			#Ping the network before trying to connect and tell the console
 			print(f'Pinging ip: {ip}')
 
+			lcdMessage
 			#Run the ping command and record output to log
 			log.write(f'[{deltaStart()}]')
 			log.write('Ping Output: \n')
@@ -58,13 +61,15 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 				print(f'Connection failed at: {ip} with a code of {ping_code}\n')
 				log.write(f'[{deltaStart()}]')
 				log.write(f"The ping_process failed with a code of {ping_code}.\n")
-		
+				lcdMessage(f'{machine_name}', 'Not Pingable')
 			#If ping worked 
 			else:
 			
 				#Tell the console what is happening
 				print(f'Ping successful.\nSending ssh command to: {ip}\n')
-
+				lcdMessage('Pinged', f'{machine_name}')
+				lcdMessage('', 'Proceeding...')
+				lcdMessage('Shutting Down', f'{machine_name}')
 				#Calls a subprocess to run the ssh command and logs it
 				log.write(f'[{deltaStart()}]')
 				log.write('SSH Output: \n')
@@ -73,7 +78,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 				log.write('\n')
 				log.write(f'[{deltaStart()}]')
 				log.write(f'End of SSH Output\n')
-					
+				lcdMessage('Finished', 'Proceeding...')	
 				#Logs the return code
 				log.write(f'[{deltaStart()}]')
 				log.write(f"The return code is: {ssh_process.returncode}\n")

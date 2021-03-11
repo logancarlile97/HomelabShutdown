@@ -1,6 +1,7 @@
 from keypad import keypadMsge 
 import time
 from timeKeeper import deltaStart
+from lcd_driver import lcdMessage, lcdClear
 
 def userVerified():
     #Pin needed from user to authorize access
@@ -15,6 +16,8 @@ def userVerified():
     print('User Authentification Required!')
     print('Please input your pin on the keypad')
 
+   
+
     while(loop):    
         try:
             
@@ -24,7 +27,10 @@ def userVerified():
                 log.write(f'[{deltaStart()}] ')
                 log.write(f'Authenticator Initialized: Asking user for pin\n')
                 log.flush()
-                 
+                
+                #Tell user to input password on lcd
+                lcdMessage('', 'Input Password')
+                
                 #Get user inputed message
                 code = keypadMsge()
                 print(f'User inputed: {code}') #For debuging
@@ -32,12 +38,14 @@ def userVerified():
                 #Record user input to log
                 log.write(f'[{deltaStart()}] ')
                 log.write(f'User inputed: {code}\n')
+                
+                lcdMessage('', 'Analysing...')
                 time.sleep(1)
                 
                 #If keyboard.py detects user quit program quit this program
                 if (code == 'UserExit'):
                     loop = False
-                    
+                    lcdClear()
                     #If a user attempts to exit program Return False 
                     return False
                 
@@ -45,6 +53,8 @@ def userVerified():
                 elif (code == pin):
                     print('User verified')
                     
+                    lcdMessage('', 'Password Valid')
+                    lcdMessage('', 'Proceeding...')
                     #log the a user was verified
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User was verified proceeding with program\n')
@@ -58,7 +68,9 @@ def userVerified():
                     #Increase lockoutTime each time user makes make attempts
                     lockoutTime = timeOut * 5
                     print(f'Max attempts made, try again in {lockoutTime} seconds')
-
+                    
+                    lcdMessage('', f'{maxAttempts} Attempts Made')
+                    lcdMessage('', f'{lockoutTime} sec Timeout')
                     #Log that user was locked out
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User used max number of attempts\n')
@@ -74,7 +86,8 @@ def userVerified():
                 else:
                     print('Incorrect pin: User not verified')
                     print('Try Again')
-                   
+
+                    lcdMessage('', f'X Attempt {attempt} of {maxAttempts}')
                     #Log that a user inputed the wrong pin
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User inputed the wrong pin, attempts are at {attempt} of {maxAttempts}\n')

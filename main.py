@@ -5,6 +5,7 @@ import timeKeeper
 from timeKeeper import dateToLog
 import sys
 import time
+from lcd_driver import lcdInit, lcdMessage, lcdClear
 
 #Function to run program
 def mainProgram(file_name, log_file):
@@ -27,7 +28,13 @@ userAuthOverride = 'noAuth'
 try:
     #Start timeKeeper
     timeKeeper.initialize()
+
+    #Initialize and clear the lcd
+    lcdInit()    
+    lcdClear()
     
+    lcdMessage('Homelab Shutdown', '')
+
     #Set the file name and log file
     file_name = './test.csv'
     log_file = './logs.txt'
@@ -54,9 +61,13 @@ try:
         #Make user input password to run the main program
         if (userVerified() == True):
             mainProgram(file_name, log_file)
-
+    lcdMessage('Program has', 'Concluded')
+    time.sleep(3)
+    lcdClear()
 except KeyboardInterrupt:
     print('User quit program')
+    lcdClear()
 
 except Exception as e:
     print(f'main.py had an error: {e}')
+    lcdClear()

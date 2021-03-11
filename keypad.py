@@ -3,7 +3,7 @@ import time
 
 def keypadMsge():
 
-    GPIO.setmode(GPIO.BOARD)
+    GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
 
     #Holds the values entered on keypad
@@ -18,10 +18,10 @@ def keypadMsge():
             ['7','8','9','C'],
             ['*','0','#','D'] ]
 
-    #Set the pins for colums and rows, 
+    #Set the GPIO pins for colums and rows, 
     # make sure they are in the right order or keys will be backwards
-    ROW = [37,35,33,31]
-    COL = [40,38,36,32]
+    ROW = [26,19,13,6]
+    COL = [21,20,16,12]
 
     try:
 
@@ -81,17 +81,17 @@ def keypadMsge():
                 GPIO.output(COL[j],1)
 
         #Cleanup GPIO pins when program finishes
-        GPIO.cleanup()
+        GPIO.cleanup(ROW + COL)
 
     #Clean GPIO pins if user quits program
     except KeyboardInterrupt:
-        GPIO.cleanup()
+        GPIO.cleanup(ROW + COL)
         return 'UserExit'
 
     #Print any other errors to terminal
     except Exception as e:
         print('Keypad test ran into an error')
         print('Exception: ' + str(e))
-        GPIO.cleanup()
+        GPIO.cleanup(ROW + COL)
 
 #print(keypadMsge())#Debuging

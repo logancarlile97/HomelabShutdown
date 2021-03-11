@@ -17,7 +17,6 @@ def lcdInit():
     lcd = characterLCD.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows)
 
 def lcdMessage(top, bottom):
-    print(str(len(top)))
     if (len(top) == 0):
         adjTop = top
     else:
@@ -27,10 +26,8 @@ def lcdMessage(top, bottom):
     else:
         adjBottom = "\n" + bottom.ljust(16)
 
-    #lcd.message = "Top" + "\n Bottom"
-    #time.sleep(5)
-    #lcd.message = "" + "\n Test"
     lcd.message = adjTop + adjBottom
+    time.sleep(1)
 
 def lcdClear():
     lcd.clear()
