@@ -1,73 +1,65 @@
-from authentification import userVerified
-from CSV_Functions import get_row_count, get_remote_info
-from SSH_Subprocess import run_ssh_command
-import timeKeeper
-from timeKeeper import dateToLog
-import sys
+from keypad import keypadMsge 
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
 
-#Function to run program
-def mainProgram(file_name, log_file):
+#Initilize the lcd 
+lcdInit()
+prgmSelected = False
+validInput = False
+log_file = "./logs.txt"
+#Start timeKeeper
+timeKeeper.initialize()
 
-    #Start with the row after the header info. 
-    row_number = 1
+#Record time and date program started to log
+dateToLog(log_file) 
 
-    #Determine the number of rows in the csv file. 
-    row_count = get_row_count(file_name)
-
-    #Loop through and run the ssh command for every row in the csv file. 
-    while row_number < row_count:
-        machine_name, ip,  rmt_user, sht_dwn_cmd = get_remote_info(file_name, row_number)
-        run_ssh_command(machine_name, ip, rmt_user, sht_dwn_cmd)
-        row_number += 1 
-
-
-#Check for user verification
-userAuthOverride = 'noAuth'
-try:
-    #Start timeKeeper
-    timeKeeper.initialize()
-
-    #Initialize and clear the lcd
-    lcdInit()    
-    lcdClear()
+while(prgmSelected == False):
+    lcdMessage('Shutdown: A', 'Power On: B')
+    usrInpt = keypadMsge()
     
-    lcdMessage('Homelab Shutdown', '')
+    #If user enters A
+    if(usrInpt == 'A'):
+        print(f'Selected Shutdown')
+        while(validInput == False):
+            lcdMessage('Selected','Shutdown')
+            lcdMessage('Continue: C', 'Back: D')
+            usrInpt = keypadMsge()
+            
+            #Check if user continues or goes back
+            if(usrInpt == 'C'):
+                validInput == True
+                prgmSelected == True
+                lcdMessage('', 'Continuing...')
+                print('User Continued')
+            elif(usrInpt == 'D'):
+                validInput == True
+                print('User Exited')
+            else:
+                lcdMessage('Invalid Input', ' ')
 
-    #Set the file name and log file
-    file_name = './test.csv'
-    log_file = './logs.txt'
 
-    #Record time and date program started to log
-    dateToLog(log_file)    
-    #See if the userAuthOverride argument is passed
-    if (len(sys.argv) == 2):
-        if (sys.argv[1] == 'noAuth'):
-            print(f'Authentication Override Detected!')
-            print('Proceeding with program in 5 seconds')
-            time.sleep(5)
-            mainProgram(file_name, log_file)
-        else:
-            print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
-   
-    #If an argument is passed and is not an userAuthOverride return an error and exit program
-    elif (len(sys.argv) != 1):
-        print(f'Invalid Arguments! User authentification override argument is {userAuthOverride}')
-        print(f'This program takes one argument and you passed {len(sys.argv)-1}')
-   
-    #If no auth override override is passed then...
+    #If user enters B
+    elif(usrInpt == 'B'):
+        print(f'Selected Power On')
+        while(validInput == False):
+            lcdMessage('Selected','Power On')
+            lcdMessage('Continue: C', 'Back: D')
+            usrInpt = keypadMsge()
+            
+            #Check if user continues or goes back
+            if(usrInpt == 'C'):
+                validInput == True
+                prgmSelected == True
+                lcdMessage('', 'Continuing...')
+                print('User Continued')
+            elif(usrInpt == 'D'):
+                validInput == True
+                lcdMessage('', 'Exiting...')
+                print('User Exited')
+            else:
+                lcdMessage('Invalid Input', ' ')
+
     else:
-        #Make user input password to run the main program
-        if (userVerified() == True):
-            mainProgram(file_name, log_file)
-    lcdMessage('Program has', 'Concluded')
-    time.sleep(3)
-    lcdClear()
-except KeyboardInterrupt:
-    print('User quit program')
-    lcdClear()
+        lcdClear()
+        lcdMessage('Invalid Input',' ')
 
-except Exception as e:
-    print(f'main.py had an error: {e}')
-    lcdClear()
