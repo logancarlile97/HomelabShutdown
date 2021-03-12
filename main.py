@@ -3,6 +3,7 @@ import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
 import timeKeeper
 from timeKeeper import dateToLog
+from mainShutdown import mainShutdown
 #Initilize the lcd 
 lcdInit()
 prgmSelected = False
@@ -34,6 +35,7 @@ while(prgmSelected == False):
                 prgmSelected = True
                 lcdMessage('', 'Continuing...')
                 print('User Continued')
+                mainShutdown()
             elif(usrInpt == 'D'):
                 validInput = True
                 print('User Exited')
