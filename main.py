@@ -1,7 +1,8 @@
 from keypad import keypadMsge 
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
-
+import timeKeeper
+from timeKeeper import dateToLog
 #Initilize the lcd 
 lcdInit()
 prgmSelected = False
