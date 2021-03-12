@@ -64,3 +64,4 @@ while(prgmSelected == False):
         lcdClear()
         lcdMessage('Invalid Input',' ')
 
+lcdClear()
