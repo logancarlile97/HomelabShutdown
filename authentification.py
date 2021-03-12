@@ -11,7 +11,7 @@ def userVerified():
     maxAttempts = 3
     timeOut = 1
     lockoutTime = 5
-    
+    exitPrgrm = 'DDD'
     #Tell user to input pin on keypad
     print('User Authentification Required!')
     print('Please input your pin on the keypad')
@@ -49,6 +49,14 @@ def userVerified():
                     #If a user attempts to exit program Return False 
                     return False
                 
+                #If user enters the program exit code then pass False to mainShutdown
+                elif (code = 'DDD'):
+                    loop = False
+                    log.write(f'[{deltaStart()}] ')
+                    log.write(f'User entered {code} which is the exit code')
+                    log.write(f'[{deltaStart()}] ')
+                    log.write(f'Exiting program')
+                    return False
                 #Check to see if code is equal to pin
                 elif (code == pin):
                     print('User verified')
