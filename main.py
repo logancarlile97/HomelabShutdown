@@ -36,12 +36,12 @@ while(prgrmSelected == False):
                 lcdMessage(' ', 'Continuing...')
                 print('User Continued')
                 mainShutdown()
-                
+                print(shutdownRan())
                 #Check to see if shutdown ended up runing 
                 # if not then repeat the prgrmSelected loop
-                if (shutdownRan == False):
+                if (shutdownRan() == False):
                     prgrmSelected = False
-                    
+            print(prgrmSelected)
             elif(usrInpt == 'D'):
                 validInput = True
                 lcdMessage(' ', 'Exiting...')
