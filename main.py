@@ -33,11 +33,12 @@ while(prgmSelected == False):
             if(usrInpt == 'C'):
                 validInput = True
                 prgmSelected = True
-                lcdMessage('', 'Continuing...')
+                lcdMessage(' ', 'Continuing...')
                 print('User Continued')
                 mainShutdown()
             elif(usrInpt == 'D'):
                 validInput = True
+                lcdMessage(' ', 'Exiting...')
                 print('User Exited')
             else:
                 lcdMessage('Invalid Input', ' ')
@@ -55,11 +56,11 @@ while(prgmSelected == False):
             if(usrInpt == 'C'):
                 validInput = True
                 prgmSelected = True
-                lcdMessage('', 'Continuing...')
+                lcdMessage(' ', 'Continuing...')
                 print('User Continued')
             elif(usrInpt == 'D'):
                 validInput = True
-                lcdMessage('', 'Exiting...')
+                lcdMessage(' ', 'Exiting...')
                 print('User Exited')
             else:
                 lcdMessage('Invalid Input', ' ')
