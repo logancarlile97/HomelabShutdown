@@ -28,12 +28,12 @@ while(prgmSelected == False):
             
             #Check if user continues or goes back
             if(usrInpt == 'C'):
-                validInput == True
-                prgmSelected == True
+                validInput = True
+                prgmSelected = True
                 lcdMessage('', 'Continuing...')
                 print('User Continued')
             elif(usrInpt == 'D'):
-                validInput == True
+                validInput = True
                 print('User Exited')
             else:
                 lcdMessage('Invalid Input', ' ')
@@ -49,12 +49,12 @@ while(prgmSelected == False):
             
             #Check if user continues or goes back
             if(usrInpt == 'C'):
-                validInput == True
-                prgmSelected == True
+                validInput = True
+                prgmSelected = True
                 lcdMessage('', 'Continuing...')
                 print('User Continued')
             elif(usrInpt == 'D'):
-                validInput == True
+                validInput = True
                 lcdMessage('', 'Exiting...')
                 print('User Exited')
             else:
