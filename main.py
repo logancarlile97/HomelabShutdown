@@ -6,7 +6,7 @@ from timeKeeper import dateToLog
 #Initilize the lcd 
 lcdInit()
 prgmSelected = False
-validInput = False
+
 log_file = "./logs.txt"
 #Start timeKeeper
 timeKeeper.initialize()
@@ -15,6 +15,8 @@ timeKeeper.initialize()
 dateToLog(log_file) 
 
 while(prgmSelected == False):
+    validInput = False
+    
     lcdMessage('Shutdown: A', 'Power On: B')
     usrInpt = keypadMsge()
     
