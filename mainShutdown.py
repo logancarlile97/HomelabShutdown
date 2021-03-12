@@ -25,6 +25,8 @@ def runShutdown(file_name, log_file):
 
 #Check for user verification
 def mainShutdown(): 
+    global prgrmRan
+    prgrmRan = False
     userAuthOverride = 'noAuth'
     try:
         #Clear the lcd
@@ -38,7 +40,8 @@ def mainShutdown():
            
         #See if the userAuthOverride argument is passed
         if (len(sys.argv) == 2):
-            if (sys.argv[1] == 'noAuth'):
+            if (sys.argv[1] == userAuthOverride):
+                dateToLog()
                 print(f'Authentication Override Detected!')
                 print('Proceeding with program in 5 seconds')
                 time.sleep(5)
@@ -56,6 +59,7 @@ def mainShutdown():
             #Make user input password to run the main program
             if (userVerified() == True):
                 runShutdown(file_name, log_file)
+                prgrmRan = True
         lcdMessage('Program has', 'Concluded')
         time.sleep(3)
         lcdClear()
@@ -66,3 +70,7 @@ def mainShutdown():
     except Exception as e:
         print(f'main.py had an error: {e}')
         lcdClear()
+
+#This function will allow main to see if user ended up running up program or not
+def shutdownRan():
+    return prgrmRan

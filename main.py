@@ -3,10 +3,10 @@ import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
 import timeKeeper
 from timeKeeper import dateToLog
-from mainShutdown import mainShutdown
+from mainShutdown import mainShutdown, shutdownRan
 #Initilize the lcd 
 lcdInit()
-prgmSelected = False
+prgrmSelected = False
 
 log_file = "./logs.txt"
 #Start timeKeeper
@@ -15,7 +15,7 @@ timeKeeper.initialize()
 #Record time and date program started to log
 dateToLog(log_file) 
 
-while(prgmSelected == False):
+while(prgrmSelected == False):
     validInput = False
     
     lcdMessage('Shutdown: A', 'Power On: B')
@@ -36,6 +36,12 @@ while(prgmSelected == False):
                 lcdMessage(' ', 'Continuing...')
                 print('User Continued')
                 mainShutdown()
+                
+                #Check to see if shutdown ended up runing 
+                # if not then repeat the prgrmSelected loop
+                if (shutdownRan == False):
+                    prgrmSelected = False
+                    
             elif(usrInpt == 'D'):
                 validInput = True
                 lcdMessage(' ', 'Exiting...')
