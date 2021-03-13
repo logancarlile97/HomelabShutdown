@@ -39,9 +39,16 @@ def mainShutdown():
         log_file = './logs.txt'
            
         #See if the userAuthOverride argument is passed
+        # if this is passed then it will overrride all authentification 
+        # it will also record a new date as this is ment to be run on its own
         if (len(sys.argv) == 2):
             if (sys.argv[1] == userAuthOverride):
-                dateToLog()
+                #Start timeKeeper
+                timeKeeper.initialize()
+
+                #Record time and date program started to log
+                dateToLog(log_file) 
+
                 print(f'Authentication Override Detected!')
                 print('Proceeding with program in 5 seconds')
                 time.sleep(5)
@@ -68,9 +75,11 @@ def mainShutdown():
         lcdClear()
 
     except Exception as e:
-        print(f'main.py had an error: {e}')
+        print(f'mainShutdown.py had an error: {e}')
         lcdClear()
 
 #This function will allow main to see if user ended up running up program or not
 def shutdownRan():
     return prgrmRan
+
+mainShutdown()
