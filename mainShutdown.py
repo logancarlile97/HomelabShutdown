@@ -49,6 +49,8 @@ def mainShutdown():
                 #Record time and date program started to log
                 dateToLog(log_file) 
 
+                #Initilaize the lcd 
+                lcdInit()
                 print(f'Authentication Override Detected!')
                 print('Proceeding with program in 5 seconds')
                 time.sleep(5)
