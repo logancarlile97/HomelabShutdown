@@ -70,7 +70,9 @@ try:
                 #Check if user continues
                 if(usrInpt == 'C'):
                     validInput = True
-                    loop = False
+                    
+                    #Reenter the main menu loop after running power on
+                    loop = True
                     lcdMessage(' ', 'Continuing...')
                     print('User Continued')
                 
