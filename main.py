@@ -34,6 +34,7 @@ try:
                 #Log that user selected shutdown
                 log.write(f'[{deltaStart()}] ')
                 log.write(f'User Selected Shutdown\n')   
+                log.flush()
 
                 #Loop until user inputs a valid input
                 while(validInput == False):
@@ -48,7 +49,8 @@ try:
                         #Log user continued
                         log.write(f'[{deltaStart()}] ')
                         log.write(f'User continued with Shutdown\n')   
-                        
+                        log.flush()
+
                         lcdMessage(' ', 'Continuing...')
                         print('User Continued')
 
@@ -67,7 +69,8 @@ try:
                         #Log user went back
                         log.write(f'[{deltaStart()}] ')
                         log.write(f'User went back to main menu\n')   
-                        
+                        log.flush()
+
                         #User entered valid input
                         validInput = True
                         
@@ -87,6 +90,8 @@ try:
                     #Log that user selected power on
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User selected Power On\n')   
+                    log.flush()
+                    
                     usrInpt = keypadMsge()
                     
                     #Check if user continues
@@ -96,6 +101,7 @@ try:
                         #Log that user continued with power on
                         log.write(f'[{deltaStart()}] ')
                         log.write(f'User continued with Power On\n')   
+                        log.flush()
 
                         #Reenter the main menu loop after running power on
                         loop = True
@@ -109,7 +115,8 @@ try:
                         #Log that user went back to main menu
                         log.write(f'[{deltaStart()}] ')
                         log.write(f'User went back to main menu\n')   
-
+                        log.flush()
+                        
                         lcdMessage(' ', 'Exiting...')
                         print('User Exited')
                     else:
