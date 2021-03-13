@@ -53,9 +53,9 @@ def userVerified():
                 elif (code == 'DDD'):
                     loop = False
                     log.write(f'[{deltaStart()}] ')
-                    log.write(f'User entered {code} which is the exit code')
+                    log.write(f'User entered {code} which is the exit code\n')
                     log.write(f'[{deltaStart()}] ')
-                    log.write(f'Exiting program')
+                    log.write(f'Exiting program\n')
                     return False
                 #Check to see if code is equal to pin
                 elif (code == pin):
