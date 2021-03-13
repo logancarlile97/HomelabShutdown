@@ -66,14 +66,6 @@ userAuthOverride = 'noAuth'
 # it will also record a new date as this is ment to be run on its own
 # This will only run if a user expicitly runs this program and passes the override argument
 if (len(sys.argv) == 2):
-    #Initilaize the lcd 
-    lcdInit()
-    
-    #Clear the lcd
-    lcdClear()
-
-    lcdMessage('Homelab Shutdown', '')
-
     #Set the file name and log file
     file_name = './test.csv'
     log_file = './logs.txt'
@@ -85,7 +77,13 @@ if (len(sys.argv) == 2):
         #Record time and date program started to log
         dateToLog(log_file) 
 
-        
+        #Initilaize the lcd 
+        lcdInit()
+    
+        #Clear the lcd
+        lcdClear()
+
+    lcdMessage('Homelab Shutdown', '')
         print(f'Authentication Override Detected!')
         print('Proceeding with program in 5 seconds')
         time.sleep(5)
