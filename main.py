@@ -41,7 +41,7 @@ while(prgrmSelected == False):
                 # if not then repeat the prgrmSelected loop
                 if (shutdownRan() == False):
                     prgrmSelected = False
-            print(prgrmSelected)
+                print(prgrmSelected)
             elif(usrInpt == 'D'):
                 validInput = True
                 lcdMessage(' ', 'Exiting...')
