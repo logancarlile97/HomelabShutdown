@@ -2,7 +2,7 @@ from keypad import keypadMsge
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
 import timeKeeper
-from timeKeeper import dateToLog
+from timeKeeper import dateToLog, deltaStart
 from mainShutdown import mainShutdown, shutdownRan
 #Initilize the lcd 
 lcdInit()
