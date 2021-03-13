@@ -90,6 +90,9 @@ if (len(sys.argv) == 2):
         print('Proceeding with program in 5 seconds')
         time.sleep(5)
         runShutdown(file_name, log_file)
+        lcdMessage('Program has', 'Concluded')
+        time.sleep(3)
+        lcdClear()
     else:
         print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
 
