@@ -60,11 +60,15 @@ def shutdownRan():
 
 
 
+userAuthOverride = 'noAuth'
 #See if the userAuthOverride argument is passed
 # if this is passed then it will overrride all authentification 
 # it will also record a new date as this is ment to be run on its own
 # This will only run if a user expicitly runs this program and passes the override argument
 if (len(sys.argv) == 2):
+    #Initilaize the lcd 
+    lcdInit()
+    
     #Clear the lcd
     lcdClear()
 
@@ -81,8 +85,7 @@ if (len(sys.argv) == 2):
         #Record time and date program started to log
         dateToLog(log_file) 
 
-        #Initilaize the lcd 
-        lcdInit()
+        
         print(f'Authentication Override Detected!')
         print('Proceeding with program in 5 seconds')
         time.sleep(5)
