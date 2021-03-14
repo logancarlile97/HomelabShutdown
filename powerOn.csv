@@ -1,1 +1,2 @@
-machine_name, ip_adress, command
+machine_name, ip_address, command
+test name, test ip, test command
