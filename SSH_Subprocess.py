@@ -21,7 +21,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 
 		
 		#Take nessacery variables and parse them together into a single string forming ssh_command
-		ssh_command = "ssh" + " " + "-o BatchMode=yes" + " -t " + rmt_usr + "@" + ip + " '" + f"echo 'Conection to {machine_name} sucsessful'&&echo && {sht_dwn_cmd}" + "'" 
+		ssh_command = "ssh" + " -t -t " + "-o BatchMode=yes" + " " + rmt_usr + "@" + ip + " '" + f"echo 'Conection to {machine_name} sucsessful'&&echo && {sht_dwn_cmd}" + "'" 
 		lcdMessage('Pinging',f'{machine_name}')
 		#Opens a file to log to
 		with open('logs.txt', 'a') as log:
