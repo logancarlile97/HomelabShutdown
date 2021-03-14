@@ -117,7 +117,6 @@ def get_row_count(csv_file):
 		log.close()
 		sys.exit()
 
-
 #Debugging
 #Sample of using get_row_count
 #row_count = get_row_count(csv_file_name)

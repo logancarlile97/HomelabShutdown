@@ -1,73 +1,142 @@
-from authentification import userVerified
-from CSV_Functions import get_row_count, get_remote_info
-from SSH_Subprocess import run_ssh_command
-import timeKeeper
-from timeKeeper import dateToLog
-import sys
+from keypad import keypadMsge 
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
+import timeKeeper
+from timeKeeper import dateToLog, deltaStart
+from mainShutdown import mainShutdown, shutdownRan
+#Initilize the lcd 
+lcdInit()
+prgrmSelected = False
+loop = True
 
-#Function to run program
-def mainProgram(file_name, log_file):
+log_file = "./logs.txt"
+#Start timeKeeper
+timeKeeper.initialize()
 
-    #Start with the row after the header info. 
-    row_number = 1
+#Record time and date program started to log
+dateToLog(log_file) 
 
-    #Determine the number of rows in the csv file. 
-    row_count = get_row_count(file_name)
-
-    #Loop through and run the ssh command for every row in the csv file. 
-    while row_number < row_count:
-        machine_name, ip,  rmt_user, sht_dwn_cmd = get_remote_info(file_name, row_number)
-        run_ssh_command(machine_name, ip, rmt_user, sht_dwn_cmd)
-        row_number += 1 
-
-
-#Check for user verification
-userAuthOverride = 'noAuth'
 try:
-    #Start timeKeeper
-    timeKeeper.initialize()
+    with open('logs.txt', 'a') as log:
+        #Loop through main menu 
+        # if the shutdown program runs sucessfully this loop will end
+        # otherwise the loop will continue indefinatly
+        while(loop):
+            validInput = False
+            
+            lcdMessage('Shutdown: A', 'Power On: B')
+            usrInpt = keypadMsge()
+            
+            #If user enters A
+            if(usrInpt == 'A'):
+                print(f'Selected Shutdown')
+                
+                #Log that user selected shutdown
+                log.write(f'[{deltaStart()}] ')
+                log.write(f'User Selected Shutdown\n')   
+                log.flush()
 
-    #Initialize and clear the lcd
-    lcdInit()    
-    lcdClear()
-    
-    lcdMessage('Homelab Shutdown', '')
+                #Loop until user inputs a valid input
+                while(validInput == False):
+                    lcdMessage('Selected','Shutdown')
+                    lcdMessage('Continue: C', 'Back: D')
+                    usrInpt = keypadMsge()
+                    
+                    #Check if user continues, if true run mainShutdown
+                    if(usrInpt == 'C'):
+                        validInput = True
+                        
+                        #Log user continued
+                        log.write(f'[{deltaStart()}] ')
+                        log.write(f'User continued with Shutdown\n')   
+                        log.flush()
 
-    #Set the file name and log file
-    file_name = './test.csv'
-    log_file = './logs.txt'
+                        lcdMessage(' ', 'Continuing...')
+                        print('User Continued')
 
-    #Record time and date program started to log
-    dateToLog(log_file)    
-    #See if the userAuthOverride argument is passed
-    if (len(sys.argv) == 2):
-        if (sys.argv[1] == 'noAuth'):
-            print(f'Authentication Override Detected!')
-            print('Proceeding with program in 5 seconds')
-            time.sleep(5)
-            mainProgram(file_name, log_file)
-        else:
-            print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
-   
-    #If an argument is passed and is not an userAuthOverride return an error and exit program
-    elif (len(sys.argv) != 1):
-        print(f'Invalid Arguments! User authentification override argument is {userAuthOverride}')
-        print(f'This program takes one argument and you passed {len(sys.argv)-1}')
-   
-    #If no auth override override is passed then...
-    else:
-        #Make user input password to run the main program
-        if (userVerified() == True):
-            mainProgram(file_name, log_file)
-    lcdMessage('Program has', 'Concluded')
-    time.sleep(3)
-    lcdClear()
+                        mainShutdown()
+                        
+                        #Check to see if shutdown ended up runing 
+                        # if not then repeat then reenter loop
+                        if (shutdownRan() == False):
+                            loop = True
+                        else:
+                            loop = False
+
+                    #If user enters D then reenter loop    
+                    elif(usrInpt == 'D'):
+                        
+                        #Log user went back
+                        log.write(f'[{deltaStart()}] ')
+                        log.write(f'User went back to main menu\n')   
+                        log.flush()
+
+                        #User entered valid input
+                        validInput = True
+                        
+                        lcdMessage(' ', 'Exiting...')
+                        print('User Exited')
+                    else:
+                        lcdMessage('Invalid Input', ' ')
+
+
+            #If user enters B
+            elif(usrInpt == 'B'):
+                print(f'Selected Power On')
+                while(validInput == False):
+                    lcdMessage('Selected','Power On')
+                    lcdMessage('Continue: C', 'Back: D')
+                    
+                    #Log that user selected power on
+                    log.write(f'[{deltaStart()}] ')
+                    log.write(f'User selected Power On\n')   
+                    log.flush()
+                    
+                    usrInpt = keypadMsge()
+                    
+                    #Check if user continues
+                    if(usrInpt == 'C'):
+                        validInput = True
+                        
+                        #Log that user continued with power on
+                        log.write(f'[{deltaStart()}] ')
+                        log.write(f'User continued with Power On\n')   
+                        log.flush()
+
+                        #Reenter the main menu loop after running power on
+                        loop = True
+                        lcdMessage(' ', 'Continuing...')
+                        print('User Continued')
+                    
+                    #Check if user goes back
+                    elif(usrInpt == 'D'):
+                        validInput = True
+                        
+                        #Log that user went back to main menu
+                        log.write(f'[{deltaStart()}] ')
+                        log.write(f'User went back to main menu\n')   
+                        log.flush()
+                        
+                        lcdMessage(' ', 'Exiting...')
+                        print('User Exited')
+                    else:
+                        lcdMessage('Invalid Input', ' ')
+
+            else:
+                lcdClear()
+                lcdMessage('Invalid Input',' ')
+
+    #Close log
+    log.close()
+#if user exits program
 except KeyboardInterrupt:
-    print('User quit program')
-    lcdClear()
+    print('User exited program')
 
+#if program runs into a problem
 except Exception as e:
-    print(f'main.py had an error: {e}')
-    lcdClear()
+    print(f'main.py ran into a problem')
+    print(f'Exception: {e}')
+
+#Clear lcd when program finishes
+lcdClear()
+
