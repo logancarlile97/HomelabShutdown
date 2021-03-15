@@ -1,5 +1,6 @@
 import subprocess
 import timeKeeper
+from timeKeeper import dateToLog, deltaStart, initialize
 import CSV_Functions
 from lcd_driver import lcdClear, lcdInit, lcdMessage
 import sys
@@ -30,10 +31,10 @@ def mainPowerOn():
                 lcdMessage('Pinging', machine_name)
 
                 #Make the Command to ping the connection
-                ping_command = "ping -c 3 " + ip
+                ping_command = "ping -c 3 " + ip_address
                 
                 #Ping the network before trying to connect and tell the console
-                print(f'Pinging ip: {ip}')
+                print(f'Pinging ip: {ip_address}')
 
                 #Run the ping command and record output to log
                 log.write(f'[{deltaStart()}]')
@@ -52,7 +53,7 @@ def mainPowerOn():
                 if ping_code != 0:
                     
                     #Tell the console what is happening
-                    print(f'Ping Failed.\n Running power on command to: {ip}\n')
+                    print(f'Ping Failed.\n Running power on command to: {ip_address}\n')
                     lcdMessage('Ping Failed', f'{machine_name}')
                     lcdMessage('', 'Proceeding...')
                     lcdMessage('Turning on', machine_name)
@@ -67,7 +68,7 @@ def mainPowerOn():
                     lcdMessage('Finished', 'Proceeding...')	
                     #Logs the return code
                     log.write(f'[{deltaStart()}] ')
-                    log.write(f"The return code is: {ssh_process.returncode}\n")
+                    log.write(f"The return code is: {pwrOnCmd.returncode}\n")
                     
                     
                     
@@ -76,13 +77,16 @@ def mainPowerOn():
                 else:
                     
                     #Tell the console what is happening and log it.
-                    print(f'Ping suceeded for: {ip}\n')
+                    print(f'Ping suceeded for: {ip_address}\n')
                     log.write(f'[{deltaStart()}] ')
                     log.write(f"The ping_process suceeded with a code of {ping_code}.\n")
                     lcdMessage(f'{machine_name}', 'Pingable')
                     log.write(f'[{deltaStart()}] ')
                     log.write(f"The ping_process suceeded with a code of {ping_code}.\n")
                     lcdMessage('', 'Proceding...')
+                
+                #Set row_number to next row
+                row_number += 1
         log.close()
     except KeyboardInterrupt:
         print(f'User exited program')
@@ -122,7 +126,7 @@ if (len(sys.argv) == 2):
         print(f'Standalone Mode Detected!')
         print('Proceeding with program in 5 seconds')
         time.sleep(5)
-        runShutdown(file_name, log_file)
+        mainPowerOn()
         lcdMessage('Program has', 'Concluded')
         time.sleep(3)
         lcdClear()
