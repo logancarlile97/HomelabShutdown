@@ -81,8 +81,6 @@ def mainPowerOn():
                     log.write(f'[{deltaStart()}] ')
                     log.write(f"The ping_process suceeded with a code of {ping_code}.\n")
                     lcdMessage(f'{machine_name}', 'Pingable')
-                    log.write(f'[{deltaStart()}] ')
-                    log.write(f"The ping_process suceeded with a code of {ping_code}.\n")
                     lcdMessage('', 'Proceding...')
                 
                 #Set row_number to next row
