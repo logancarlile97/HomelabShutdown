@@ -69,7 +69,7 @@ def mainPowerOn():
                     #Logs the return code
                     log.write(f'[{deltaStart()}] ')
                     log.write(f"The return code is: {pwrOnCmd.returncode}\n")
-                    
+                    log.flush()
                     
                     
                     
@@ -82,7 +82,7 @@ def mainPowerOn():
                     log.write(f"The ping_process suceeded with a code of {ping_code}.\n")
                     lcdMessage(f'{machine_name}', 'Pingable')
                     lcdMessage('', 'Proceding...')
-                
+                    log.flush()
                 #Set row_number to next row
                 row_number += 1
         log.close()
@@ -130,5 +130,5 @@ if (len(sys.argv) == 2):
         lcdClear()
     else:
         print(f'Invalid argument, standalone command is: {stndAlne}')
-else:
-    print(f'To run in standalone mode use argument {stndAlne}') 
+elif (len(sys.argv) != 1):
+    print(f'To run powerOn in standalone mode use argument {stndAlne}') 

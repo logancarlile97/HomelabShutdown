@@ -4,6 +4,8 @@ from lcd_driver import lcdInit, lcdMessage, lcdClear
 import timeKeeper
 from timeKeeper import dateToLog, deltaStart
 from mainShutdown import mainShutdown, shutdownRan
+from mainPowerOn import mainPowerOn
+
 #Initilize the lcd 
 lcdInit()
 prgrmSelected = False
@@ -102,7 +104,8 @@ try:
                         log.write(f'[{deltaStart()}] ')
                         log.write(f'User continued with Power On\n')   
                         log.flush()
-
+                        
+                        mainPowerOn()
                         #Reenter the main menu loop after running power on
                         loop = True
                         lcdMessage(' ', 'Continuing...')
@@ -131,6 +134,8 @@ try:
 #if user exits program
 except KeyboardInterrupt:
     print('User exited program')
+    lcdClear()
+    
 
 #if program runs into a problem
 except Exception as e:
