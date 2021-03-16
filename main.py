@@ -5,13 +5,18 @@ import timeKeeper
 from timeKeeper import dateToLog, deltaStart
 from mainShutdown import mainShutdown, shutdownRan
 from mainPowerOn import mainPowerOn
+import subprocess
 
 #Initilize the lcd 
 lcdInit()
 prgrmSelected = False
 loop = True
 
+#Code for user to shutdown program from main menu
+shtDwnCode = 'D'
+shtDwnCmd = '/usr/sbin/shutdown +1'
 log_file = "./logs.txt"
+
 #Start timeKeeper
 timeKeeper.initialize()
 
@@ -124,7 +129,47 @@ try:
                         print('User Exited')
                     else:
                         lcdMessage('Invalid Input', ' ')
+           
+            #If user enters the shutdown code
+            elif (usrInpt == shtDwnCode):
+                log.write(f'[{deltaStart()}] ')
+                log.write(f'User entered {usrInpt} which is the program shutdown code, asking for confirmation\n')
+                log.flush()
+                #loop until valid user input
+                while(validInput == False):
+                    lcdMessage('Selected','Program Shutdown')
+                    lcdMessage('Continue: C', 'Back: D')
+                    usrInpt = keypadMsge()
+                    
+                    #Check if user continues
+                    if(usrInpt == 'C'):
+                        validInput = True
+                        
+                        #Log that user continued with program shutdown
+                        log.write(f'[{deltaStart()}] ')
+                        log.write(f'User continued with program shutdown\n')   
+                        log.flush()
 
+                        #Exit the main menu loop 
+                        loop = False
+                        lcdMessage(' ', 'Continuing...')
+                        print('User Continued')
+
+                        subprocess.run(shtDwnCmd, shell = True, stdout = log, text = True)
+
+                    #Check if user goes back
+                    elif(usrInpt == 'D'):
+                        validInput = True
+                        
+                        #Log that user went back to main menu
+                        log.write(f'[{deltaStart()}] ')
+                        log.write(f'User went back to main menu\n')   
+                        log.flush()
+                        
+                        lcdMessage(' ', 'Exiting...')
+                        print('User Exited')
+                    else:
+                        lcdMessage('Invalid Input', ' ')
             else:
                 lcdClear()
                 lcdMessage('Invalid Input',' ')
