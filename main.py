@@ -14,7 +14,7 @@ loop = True
 
 #Code for user to shutdown program from main menu
 shtDwnCode = 'D'
-shtDwnCmd = '/usr/sbin/shutdown +1'
+shtDwnCmd = 'sudo /usr/sbin/shutdown +1'
 log_file = "./logs.txt"
 
 #Start timeKeeper
@@ -168,8 +168,15 @@ try:
                         
                         lcdMessage(' ', 'Exiting...')
                         print('User Exited')
+                    
                     else:
                         lcdMessage('Invalid Input', ' ')
+            
+            #If keyboard.py detects user quit program then quit this program
+            elif (usrInpt == 'UserExit'):
+                loop = False
+                lcdClear()
+
             else:
                 lcdClear()
                 lcdMessage('Invalid Input',' ')
@@ -179,7 +186,7 @@ try:
 #if user exits program
 except KeyboardInterrupt:
     print('User exited program')
-    lcdClear()
+    lcdClear()  
     
 
 #if program runs into a problem

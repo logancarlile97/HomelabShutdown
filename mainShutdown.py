@@ -48,6 +48,7 @@ def mainShutdown():
         lcdClear()
     except KeyboardInterrupt:
         print('User quit program')
+        time.sleep(1)
         lcdClear()
 
     except Exception as e:

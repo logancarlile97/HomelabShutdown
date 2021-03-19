@@ -50,7 +50,7 @@ def userVerified():
                     return False
                 
                 #If user enters the program exit code then pass False to mainShutdown
-                elif (code == 'DDD'):
+                elif (code == exitPrgrm):
                     loop = False
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User entered {code} which is the exit code\n')
