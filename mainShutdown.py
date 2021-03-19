@@ -27,7 +27,7 @@ def runShutdown(file_name, log_file):
 def mainShutdown(): 
     global prgrmRan
     prgrmRan = False
-    userAuthOverride = 'noAuth'
+
     try:
         #Clear the lcd
         lcdClear()
@@ -35,7 +35,7 @@ def mainShutdown():
         lcdMessage('Homelab Shutdown', '')
 
         #Set the file name and log file
-        file_name = './test.csv'
+        file_name = './shutdown.csv'
         log_file = './logs.txt'
            
         #Make user input password to run the main program
@@ -48,6 +48,7 @@ def mainShutdown():
         lcdClear()
     except KeyboardInterrupt:
         print('User quit program')
+        time.sleep(1)
         lcdClear()
 
     except Exception as e:
@@ -83,7 +84,7 @@ if (len(sys.argv) == 2):
         #Clear the lcd
         lcdClear()
 
-    lcdMessage('Homelab Shutdown', '')
+        lcdMessage('Homelab Shutdown', '')
         print(f'Authentication Override Detected!')
         print('Proceeding with program in 5 seconds')
         time.sleep(5)

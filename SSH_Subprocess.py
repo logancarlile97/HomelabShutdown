@@ -40,7 +40,6 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			#Ping the network before trying to connect and tell the console
 			print(f'Pinging ip: {ip}')
 
-			lcdMessage
 			#Run the ping command and record output to log
 			log.write(f'[{deltaStart()}]')
 			log.write('Ping Output: \n')
