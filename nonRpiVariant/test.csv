@@ -1,3 +1,0 @@
-MachineName,IPAddress,RemoteUser,Shudown Command
- localhost, 127.0.0.1 , pi , /bin/ls
-  localhost, 127.0.0.1 , pi , /bin/ifconfig
