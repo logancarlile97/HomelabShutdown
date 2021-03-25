@@ -68,7 +68,7 @@ userAuthOverride = 'noAuth'
 # This will only run if a user expicitly runs this program and passes the override argument
 if (len(sys.argv) == 2):
     #Set the file name and log file
-    file_name = './test.csv'
+    file_name = './shutdown.csv'
     log_file = './logs.txt'
     
     if (sys.argv[1] == userAuthOverride):
