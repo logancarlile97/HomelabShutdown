@@ -5,6 +5,7 @@ This program is intended to be used on a Raspberry Pi as it takes use of its GPI
 ## Automatic Install
 If you would like to skip the manuel steps in initial setup then copy and paste this command in the terminal:
 * <code>curl https://raw.githubusercontent.com/logancarlile97/HomelabShutdown/installScript/install.sh | sudo bash</code>
+
 It will install the program to the <code>/home/pi</code> directory.
 ## Initial Setup
 ### Dependencies
