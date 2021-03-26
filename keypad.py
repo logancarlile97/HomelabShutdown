@@ -20,7 +20,7 @@ def keypadMsge():
 
     #Set the GPIO pins for colums and rows, 
     # make sure they are in the right order or keys will be backwards
-    ROW = [26,19,13,6]
+    ROW = [19,13,6,5]
     COL = [21,20,16,12]
 
     try:
