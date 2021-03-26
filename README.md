@@ -17,7 +17,7 @@ Create a cronjob. On the Rasperry Pi this is simple.
 <li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
 </ul>
 
-## Keypad Options 
+## Keypad Usage 
 
 On most menus, the LCD will request a keypad input from you. Here are your options after you have typed your input:
 
