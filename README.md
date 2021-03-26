@@ -5,11 +5,11 @@ This program is intended to be used on a Raspberry Pi as it takes use of its GPI
 ## Initial Setup
 Before the program may be run you must first intall required depencies. To install them run these commands:
 
-<code>sudo apt update </code>
+<ul><code>sudo apt update </code>
 <code>sudo apt install python3</code>  
 <code>sudo apt install python3-pip</code>
 <code>sudo apt-get install rpi.gpio</code>
-<code>sudo pip3 install adafruit-circuitpython-charlcd</code>
+<code>sudo pip3 install adafruit-circuitpython-charlcd</code></ul>
 
 ## Running Automatically upon Boot
 Create a cronjob. On the Rasperry Pi this is simple. 
