@@ -47,7 +47,7 @@ Putting Shutdown Commands in CSV file:
   <li>For example: <code>/bin/ls</code> rather than <code>ls</code></li>
   <li>You can find the path by running: <code>whereis {command}</code></li></ul>
 
-The default shutdown CSV file is <code>shutdown.csv</code> however this may be changed in <code>main.py</code>
+The default shutdown CSV file is <code>shutdown.csv</code> however this may be changed in <code>mainShutdown.py</code>
   
 ### Logging
 Most operations are recorded to the log in <code>logs.txt</code>
@@ -83,3 +83,18 @@ All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
 
+## PowerOn CSV File Usage
+
+This program uses entries on a CSV file to gather information needed for logging, pinging machines, and running power on commands. 
+
+Headers for the CSV file are:
+<code>Machine_Name, IPAddress, PowerOn Command</code>
+
+Entries are required to be in this order or the program will not run properly
+
+Putting PowerOn Commands in CSV file:
+  <ul><li>Commands must use the full command path</li>
+  <li>For example: <code>/bin/ls</code> rather than <code>ls</code></li>
+  <li>You can find the path by running: <code>whereis {command}</code></li></ul>
+
+The default PowerOn CSV file is <code>powerOn.csv</code> however this may be changed in <code>mainPowerOn.py</code>
