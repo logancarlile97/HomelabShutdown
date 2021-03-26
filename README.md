@@ -17,6 +17,20 @@ Create a cronjob. On the Rasperry Pi this is simple.
 <li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
 </ul>
 
+## Keypad Options 
+
+On most menus, the LCD will request a keypad input from you. Here are your options after you have typed your input:
+
+<ul><li>Press the <code>#</code> key to enter your input</li>
+	<li>Press the <code>*</code> Key to reset your input</li></ul>
+	
+On the main menu after boot up, when prompted whether to run the Shudown or Power on program you have an additional option:
+	
+<ul><li>Enter <code>D</code> to shutdown the PI.</li></ul>
+
+On the Shutdown Program, when prompeted for the password, you have an additional option: 
+	
+<ul><li>Enter <code>DDD</code> to exit back to the main menu.</li></ul>
 
 ## Shutdown Features
 
@@ -69,17 +83,3 @@ All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
 
-## Keypad Options 
-
-On most menus, the LCD will request a keypad input from you. Here are your options after you have typed your input:
-
-<ul><li>Press the <code>#</code> key to enter your input</li>
-	<li>Press the <code>*</code> Key to reset your input</li></ul>
-	
-On the main menu after boot up, when prompted whether to run the Shudown or Power on program you have an additional option:
-	
-<ul><li>Enter <code>D</code> to shutdown the PI.</li></ul>
-
-On the Shutdown Program, when prompeted for the password, you have an additional option: 
-	
-<ul><li>Enter <code>DDD</code> to exit back to the main menu.</li></ul>
