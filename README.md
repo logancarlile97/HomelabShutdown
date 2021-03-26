@@ -91,6 +91,11 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
+### Changing the Shutdown Pin
+When attempting to run a shutdown using the keypad a pin will be required
+
+
+
 ## PowerOn Features
 
 ### PowerOn CSV File Usage
