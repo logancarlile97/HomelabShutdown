@@ -69,7 +69,7 @@ All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
 
-## Keypad Options: 
+## Keypad Options 
 
 On most menus, the LCD will request a keypad input from you. Here are your options after you have typed your input.
 
