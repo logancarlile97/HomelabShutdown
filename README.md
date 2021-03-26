@@ -78,8 +78,8 @@ On most menus, the LCD will request a keypad input from you. Here are your optio
 	
 On the main menu after boot up, when prompted whether to run the Shudown or Power on program you have an additional option:
 	
-<ul><li>Press the <code>'D'</code> key to shutdown the PI.</li></ul>
+<ul><li>Enter the <code>'D'</code> to shutdown the PI.</li></ul>
 
 On the Shutdown Program, when prompeted for the password, you have an additional option: 
 	
-<ul><li>Press <code>"DDD"</code> to exit back to the main menu.</li></ul>
+<ul><li>Enter <code>"DDD"</code> to exit back to the main menu.</li></ul>
