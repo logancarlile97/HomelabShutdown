@@ -10,7 +10,8 @@ If you would like to skip the manual setup steps then copy and paste this comman
 
 It will install the program to the <code>/home/pi</code> directory. It will also install dependencies and a cron job.
 
-### Dependencies
+### Manual Install
+#### Dependencies
 Before the program may be run you must first intall required depencies. To install them run these commands:
 
 * <code>sudo apt update </code>
@@ -19,7 +20,7 @@ Before the program may be run you must first intall required depencies. To insta
 * <code>sudo apt install rpi.gpio</code>
 * <code>sudo pip3 install adafruit-circuitpython-charlcd</code>
 
-### Running Automatically upon Boot
+#### Running Automatically upon Boot
 Create a cron job. On the Rasperry Pi this is simple. 
 <ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
 <li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
