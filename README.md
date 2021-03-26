@@ -1,4 +1,4 @@
-# HomelabShutdown
+# Homelab Shutdown/Power On
 Program to shutdown Homelab servers via ssh
 
 This program is intended to be used on a Raspberry Pi as it takes use of its GPIO pins
@@ -14,7 +14,7 @@ Putting Shutdown Commands in CSV file:
   <li>For example: <code>/bin/ls</code> rather than <code>ls</code></li>
   <li>You can find the path by running: <code>whereis {command}</code></li></ul>
 
-The default CSV file is <code>test.csv</code> however this may be changed in <code>main.py</code>
+The default shutdown CSV file is <code>shutdown.csv</code> however this may be changed in <code>main.py</code>
   
 ## Logging
 Most operations are recorded to the log in <code>logs.txt</code>
