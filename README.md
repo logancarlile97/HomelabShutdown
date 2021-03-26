@@ -2,7 +2,12 @@
 Program to shutdown and power on Homelab servers via ssh
 
 This program is intended to be used on a Raspberry Pi as it takes use of its GPIO pins
+## Automatic Install
+If you would like to skip the manuel steps in initial setup then copy and paste this command in the terminal:
+* <code>curl https://raw.githubusercontent.com/logancarlile97/HomelabShutdown/installScript/install.sh | sudo bash</code>
+It will install the program to the <code>/home/pi</code> directory.
 ## Initial Setup
+### Dependencies
 Before the program may be run you must first intall required depencies. To install them run these commands:
 
 * <code>sudo apt update </code>
@@ -11,7 +16,7 @@ Before the program may be run you must first intall required depencies. To insta
 * <code>sudo apt install rpi.gpio</code>
 * <code>sudo pip3 install adafruit-circuitpython-charlcd</code>
 
-## Running Automatically upon Boot
+### Running Automatically upon Boot
 Create a cronjob. On the Rasperry Pi this is simple. 
 <ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
 <li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
