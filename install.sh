@@ -4,7 +4,7 @@ apt update -y
 apt install python3 -y
 apt install python3-pip -y
 apt install rpi.gpio -y
-pip3 install adafruit-circuitpython-charlcd -y
+pip3 install adafruit-circuitpython-charlcd 
 
 #Set up the Cron tab job
 sudo su pi
