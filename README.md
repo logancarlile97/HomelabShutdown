@@ -68,3 +68,18 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
+
+## Keypad Options: 
+
+On most menus, the LCD will request a keypad input from you. Here are your options after you have typed your input.
+
+<ul><li>Press the '#' key to enter your input</li>
+<li>Press the '*' Key to reset your input</li></ul>
+	
+On the main menu after boot up, when prompted whether to run the Shudown or Power on program you have an additional option:
+	
+<ul><li>Press the 'D' key to shutdown the PI.</li></ul>
+
+On the Shutdown Program, when prompeted for the password, you have an additional option: 
+	
+<ul><li>Press "DDD" to exit back to the main menu.</li></ul>
