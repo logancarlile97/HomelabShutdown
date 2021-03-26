@@ -82,8 +82,9 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
+## PowerOn Features
 
-## PowerOn CSV File Usage
+### PowerOn CSV File Usage
 
 This program uses entries on a CSV file to gather information needed for logging, pinging machines, and running power on commands. 
 
@@ -98,3 +99,9 @@ Putting PowerOn Commands in CSV file:
   <li>You can find the path by running: <code>whereis {command}</code></li></ul>
 
 The default PowerOn CSV file is <code>powerOn.csv</code> however this may be changed in <code>mainPowerOn.py</code>
+
+### What happens when running PowerOn?
+* PowerOn will retrive information from one row in the <code>powerOn.csv</code> file
+* PowerOn will ping the Remote Machine's IP address, retrived from <code>powerOn.csv</code>
+* If PowerOn is able to ping the IP it will move to the next row in <code>powerOn.csv</code>
+* If PowerOn is not able to ping the IP it will run the power on command, retrived from the <code>powerOn.csv</code> then go to the next row
