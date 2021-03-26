@@ -92,10 +92,11 @@ All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
 ### Changing the Shutdown Pin
-When attempting to run a shutdown using the keypad a pin will be required
+When attempting to run a shutdown using the keypad, a pin will be required. By default the pin is <code>1234</code>.
 
-
-
+To change this you will have to edit the <code>authentification.py</code> file.
+* Look for a variable named <code>pin</code>
+* The default entry for this line is <code>pin='1234'</code>
 ## PowerOn Features
 
 ### PowerOn CSV File Usage
