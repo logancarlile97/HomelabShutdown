@@ -8,7 +8,7 @@ Before the program may be run you must first intall required depencies. To insta
 * <code>sudo apt update </code>
 * <code>sudo apt install python3</code>  
 * <code>sudo apt install python3-pip</code>
-* <code>sudo apt-get install rpi.gpio</code>
+* <code>sudo apt install rpi.gpio</code>
 * <code>sudo pip3 install adafruit-circuitpython-charlcd</code>
 
 ## Running Automatically upon Boot
