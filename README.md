@@ -5,7 +5,7 @@ This program is intended to be used on a Raspberry Pi as it takes use of its GPI
 
 ## Shutdown Features
 
-### CSV File Usage
+### Shutdown CSV File Usage
 This program uses entries on a CSV file to gather information needed for logging, remote conections, and to run remote commands.
 
 Headers for the CSV file are:
@@ -40,6 +40,8 @@ In order to connect to a remote machine and run a shutdown command you will need
 You must use SSH keys or the program will not be able to connect to the remote machine. You can create a new SSH Key by running this command on most linux distrobutions 
     <code>ssh-keygen -a 100 -t ed25519</code>
 
+If you are unsure of how to do work with ssh keys then <a href = "https://www.youtube.com/watch?v=vINn1MIrf7o">this</a> is a good video.  
+
 It is highly recommended that you create a new user who's only permision is to run your shutdown command
 
 ### Local Shutdown Commands
@@ -50,8 +52,7 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 
 All local machine commands should be placed at the end of the csv file.
 
-Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. If you are unsure of how to do work with ssh keys then <a href = "https://www.youtube.com/watch?v=vINn1MIrf7o">this</a> is a good video.  
-
+Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
 ### Running Automatically upon Boot
 Create a cronjob. On the Rasperry Pi this is simple. 
 <ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
