@@ -11,12 +11,14 @@ pip3 install adafruit-circuitpython-charlcd
 #Go to the pi users directory
 cd /home/pi
 
+
+#Change to the pi user until EOF is reached
+sudo -i -u pi bash << EOF
+
 #Clone the githup repo
 git clone https://github.com/logancarlile97/HomelabShutdown.git
 
-#Set up a cron job to auto start the program upon boot
-#Change to the pi user
-sudo -i -u pi bash << EOF
+#Create a cron job to run program upon boot
 touch /home/pi/HomelabShutdown/cronfile.tmp
 /usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
 echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /home/pi/HomelabShutdown/cronfile.tmp
