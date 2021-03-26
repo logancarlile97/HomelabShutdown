@@ -2,6 +2,16 @@
 Program to shutdown and power on Homelab servers via ssh
 
 This program is intended to be used on a Raspberry Pi as it takes use of its GPIO pins
+## Initial Setup
+Before the program may be run you must first intall required depencies. To install them run these commands:
+<code>sudo apt update \nsudo apt install net-tools</code>  
+
+## Running Automatically upon Boot
+Create a cronjob. On the Rasperry Pi this is simple. 
+<ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
+<li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
+</ul>
+
 
 ## Shutdown Features
 
@@ -53,8 +63,3 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
-### Running Automatically upon Boot
-Create a cronjob. On the Rasperry Pi this is simple. 
-<ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
-<li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
-</ul>
