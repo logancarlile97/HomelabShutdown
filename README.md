@@ -31,7 +31,7 @@ In order to connect to a remote machine and run a shutdown command you will need
 <ul><li>Create a new user on the remote machine to connect to and run the shutdown command</li>
     <li>Make an SSH key pair for the machine this program is running on</li>
     <li>Copy your public SSH key to the remote machine user that you are connecting to</li>
-    <li>One the remote machine give the remote user sudo privilages to run your shutdown command without a password</li></ul>
+    <li>On the remote machine give the remote user sudo privilages to run your shutdown command without a password</li></ul>
 
 You must use SSH keys or the program will not be able to connect to the remote machine. You can create a new SSH Key by running this command on most linux distrobutions 
     <code>ssh-keygen -a 100 -t ed25519</code>
