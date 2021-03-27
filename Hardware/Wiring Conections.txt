@@ -1,0 +1,38 @@
+4x4 Keypad Conections
+-----------------
+
+Keypad ===========> Raspberry Pi
+------------------------------------
+Pin 1 (Row1) =====> GPIO 19 (Pin 35)
+Pin 2 (Row2) =====> GPIO 13 (Pin 33)
+Pin 3 (Row3) =====> GPIO  6 (Pin 31)
+Pin 4 (Row4) =====> GPIO  5 (Pin 29)
+Pin 5 (Colomn1) ==> GPIO 21 (Pin 40)
+Pin 6 (Column2) ==> GPIO 20 (Pin 38)
+Pin 7 (Column3) ==> GPIO 16 (Pin 36)
+Pin 8 (Column4) ==> GPIO 12 (Pin 32)
+
+____________________________________
+
+
+16x2 LCD Conections
+-------------------
+
+LCD ==> Raspberry Pi / GND / +5v / Potentiometer 
+--------------------------------------------------
+Pin  1 (VSS/GND) =============> GND
+Pin  2 (VDD/+5v) =============> +5v
+Pin  3 (VE/Contrast) =========> Potentiometer
+Pin  4 (RS/Register Select) ==> GPIO 17 (Pin 11)
+Pin  5 (RW/ReadWrite) ========> GND
+Pin  6 (E/Enable) ============> GPIO 27 (Pin 13)
+Pin  7 (D0) ==================> N/A (No Conection)
+Pin  8 (D1) ==================> N/A (No Conection)
+Pin  9 (D2) ==================> N/A (No Conection)
+Pin 10 (D3) ==================> N/A (No Conection)
+Pin 11 (D4) ==================> GPIO 22 (Pin 15)
+Pin 12 (D5) ==================> GPIO 10 (Pin 19)
+Pin 13 (D6) ==================> GPIO  9 (Pin 21)
+Pin 14 (D7) ==================> GPIO 11 (Pin 23)
+Pin 15 (A/Backlight +5v) =====> Potentiometer
+Pin 16 (K/Backlight GND) =====> GND
