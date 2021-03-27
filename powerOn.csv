@@ -1,0 +1,2 @@
+machine_name, ip_address, command
+defaultEntry, 172.30.0.1, ls -al

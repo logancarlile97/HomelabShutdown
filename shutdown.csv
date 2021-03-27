@@ -1,0 +1,2 @@
+MachineName,IPAddress,RemoteUser,Shudown Command
+defaultEntry, 127.0.0.1 , pi , sudo /usr/sbin/shutdown -r +1
