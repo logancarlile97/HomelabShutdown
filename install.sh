@@ -16,7 +16,7 @@ cd /home/pi
 sudo -i -u pi bash << EOF
 
 #Clone the githup repo
-git clone --branch installScript https://github.com/logancarlile97/HomelabShutdown.git
+git clone https://github.com/logancarlile97/HomelabShutdown.git
 
 #Create a cron job to run program upon boot
 touch /home/pi/HomelabShutdown/cronfile.tmp
