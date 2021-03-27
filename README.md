@@ -12,6 +12,7 @@ It will install the program to the <code>/home/pi</code> directory. It will also
 
 ### Manual Install
 #### Dependencies
+
 Before the program may be run you must first intall required depencies. To install them run these commands:
 
 * <code>sudo apt update </code>
