@@ -2,7 +2,16 @@
 Program to shutdown and power on Homelab servers via ssh
 
 This program is intended to be used on a Raspberry Pi as it takes use of its GPIO pins
+
 ## Initial Setup
+### Automatic Install
+If you would like to skip the manual setup steps then copy and paste this command in the terminal:
+* <code>curl https://raw.githubusercontent.com/logancarlile97/HomelabShutdown/main/install.sh | sudo bash</code>
+
+It will install the program to the <code>/home/pi</code> directory. It will also install dependencies and a cron job.
+
+### Manual Install
+#### Dependencies
 Before the program may be run you must first intall required depencies. To install them run these commands:
 
 * <code>sudo apt update </code>
@@ -11,8 +20,8 @@ Before the program may be run you must first intall required depencies. To insta
 * <code>sudo apt install rpi.gpio</code>
 * <code>sudo pip3 install adafruit-circuitpython-charlcd</code>
 
-## Running Automatically upon Boot
-Create a cronjob. On the Rasperry Pi this is simple. 
+#### Running Automatically upon Boot
+Create a cron job. On the Rasperry Pi this is simple. 
 <ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
 <li>Append this to the crontab file <code>@reboot sleep 5 && cd /{path_to_HomelabShutdown}/HomelabShutdown/ && python3 ./main.py</code>. This command will run the program upon reboot of the Raspberry Pi.</li>
 </ul>
@@ -82,6 +91,12 @@ If you want to actually shutdown or reboot the local machine make sure to add a 
 All local machine commands should be placed at the end of the csv file.
 
 Just like a remote machine you need to place your public ssh key in the <code>authorized_keys</code> file of the local machine. 
+### Changing the Shutdown Pin
+When attempting to run a shutdown using the keypad, a pin will be required. By default the pin is <code>1234</code>.
+
+To change this you will have to edit the <code>authentification.py</code> file.
+* Look for a variable named <code>pin</code>
+* The default entry for this line is <code>pin='1234'</code>
 ## PowerOn Features
 
 ### PowerOn CSV File Usage
