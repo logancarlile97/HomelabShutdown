@@ -32,7 +32,7 @@ EOF
 #Ask user to reboot the pi to make the program run
 echo 
 echo "Reboot needed to finish install"
-read -p "Reboot now? (y/n): " rbtNw
+read "Reboot now? (y/n): " rbtNw
 echo
 
 case $rbtNw in 
