@@ -8,7 +8,7 @@ This program is intended to be used on a Raspberry Pi as it takes use of its GPI
 If you would like to skip the manual setup steps then copy and paste this command in the terminal:
 * <code>curl https://raw.githubusercontent.com/logancarlile97/HomelabShutdown/main/install.sh | sudo bash</code>
 
-It will install the program to the <code>/home/pi</code> directory. It will also install dependencies and a cron job.
+It will install the program to the <code>/home/pi</code> directory. It will also install dependencies and a cron job to run the program automatically upon boot.
 
 ### Manual Install
 #### Dependencies
@@ -16,11 +16,15 @@ It will install the program to the <code>/home/pi</code> directory. It will also
 Before the program may be run you must first intall required depencies. To install them run these commands:
 
 * <code>sudo apt update </code>
+* <code>sudo apt install git</code>
 * <code>sudo apt install python3</code>  
 * <code>sudo apt install python3-pip</code>
 * <code>sudo apt install rpi.gpio</code>
 * <code>sudo pip3 install adafruit-circuitpython-charlcd</code>
 
+#### Cloning program
+To clone the git hub repository run this command:
+* <code>git clone https://github.com/logancarlile97/HomelabShutdown.git</code>
 #### Running Automatically upon Boot
 Create a cron job. On the Rasperry Pi this is simple. 
 <ul><li>As the PI user run this command in the terminal <code>crontab -e</code>. This will allow you to add a schedualed task.</li>
