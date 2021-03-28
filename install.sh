@@ -35,7 +35,7 @@ echo "Reboot needed to finish install"
 read -p "Reboot now? (y/n): " rbtNw
 echo
 
-case "$rbtNw" in 
+case $rbtNw in 
   y|Y ) echo "Rebooting in 10sec press Ctrl-c to cancel" && sleep 10 && reboot;;
   * ) echo "Please reboot manualy later";;
 esac
