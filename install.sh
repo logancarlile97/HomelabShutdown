@@ -8,6 +8,9 @@ apt install python3-pip -y
 apt install rpi.gpio -y
 pip3 install adafruit-circuitpython-charlcd 
 
+#Update packages on pi
+apt update
+
 #Go to the pi users directory
 cd /home/pi
 
@@ -25,3 +28,6 @@ echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /h
 crontab /home/pi/HomelabShutdown/cronfile.tmp
 rm /home/pi/HomelabShutdown/cronfile.tmp
 EOF
+
+#Reboot teh pi to make the program run
+reboot
