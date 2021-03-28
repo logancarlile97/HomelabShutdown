@@ -18,24 +18,26 @@ cd /home/pi
 #Change to the pi user until EOF is reached
 sudo -i -u pi bash << EOF
 
-#Clone the githup repo
-git clone https://github.com/logancarlile97/HomelabShutdown.git
+  #Clone the githup repo
+  git clone https://github.com/logancarlile97/HomelabShutdown.git
 
-#Ask user if they want to create an autostart job for the program to start after boot
-echo 
-read -p 'Create a job to run program at boot? (y/n): ' crnJb <&1
-echo
+  #Ask user if they want to create an autostart job for the program to start after boot
+  echo 
+  read -p 'Create a job to run program at boot? (y/n): ' crnJb <&1
+  echo
 
-case $crnJb in
-  #Create a cron job to run program upon boot
-  y|Y ) touch /home/pi/HomelabShutdown/cronfile.tmp
-  /usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
-  echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /home/pi/HomelabShutdown/cronfile.tmp
-  crontab /home/pi/HomelabShutdown/cronfile.tmp
-  rm /home/pi/HomelabShutdown/cronfile.tmp
-  ;;
+  case $crnJb in
+    #Create a cron job to run program upon boot
+    y|Y ) 
+    touch /home/pi/HomelabShutdown/cronfile.tmp
+    /usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
+    echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /home/pi/HomelabShutdown/cronfile.tmp
+    crontab /home/pi/HomelabShutdown/cronfile.tmp
+    rm /home/pi/HomelabShutdown/cronfile.tmp
+    ;;
   
-  * ) echo "Skipped installing cron job" ;; 
+    * ) echo "Skipped installing cron job" ;; 
+  esac
 EOF
 
 #Delay to give user time to see previous message
