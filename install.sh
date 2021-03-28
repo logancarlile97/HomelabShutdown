@@ -27,8 +27,8 @@ read -p 'Create a job to run program at boot? (y/n): ' crnJb <&1
 echo
 
 case $crnJb in
-  #Create a cron job to run program upon boot
   y|Y )
+  #Create a cron job to run program upon boot
   touch /home/pi/HomelabShutdown/cronfile.tmp
   /usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
   echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /home/pi/HomelabShutdown/cronfile.tmp
