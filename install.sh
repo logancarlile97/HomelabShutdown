@@ -9,7 +9,7 @@ apt install rpi.gpio -y
 pip3 install adafruit-circuitpython-charlcd 
 
 #Update packages on pi
-apt update
+apt upgrade -y
 
 #Go to the pi users directory
 cd /home/pi
@@ -29,5 +29,13 @@ crontab /home/pi/HomelabShutdown/cronfile.tmp
 rm /home/pi/HomelabShutdown/cronfile.tmp
 EOF
 
-#Reboot teh pi to make the program run
-reboot
+#Ask user to reboot the pi to make the program run
+echo 
+echo "Reboot needed to finish install"
+read -p "Reboot now? (y/n): " rbtNw
+echo
+
+case "$rbtNw" in 
+  y|Y ) echo "Rebooting in 10sec press Ctrl-c to cancel" && sleep 10 && reboot;;
+  * ) echo "Please reboot manualy later";;
+esac
