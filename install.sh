@@ -40,7 +40,7 @@ y|Y )
 	crontab /home/pi/HomelabShutdown/cronfile.tmp
 	rm /home/pi/HomelabShutdown/cronfile.tmp
 	
-	EOF
+EOF
 ;;
 
 * ) echo "Skipped installing cron job" ;; 
