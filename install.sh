@@ -27,16 +27,16 @@ sudo -i -u pi bash << EOF
   echo
 
   case $crnJb in
-    #Create a cron job to run program upon boot
-    y|Y ) 
-    touch /home/pi/HomelabShutdown/cronfile.tmp
-    /usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
-    echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /home/pi/HomelabShutdown/cronfile.tmp
-    crontab /home/pi/HomelabShutdown/cronfile.tmp
-    rm /home/pi/HomelabShutdown/cronfile.tmp
-    ;;
+  #Create a cron job to run program upon boot
+  y|Y ) 
+  touch /home/pi/HomelabShutdown/cronfile.tmp
+  /usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
+  echo "@reboot sleep 5 && cd /home/pi/HomelabShutdown && python3 ./main.py" >> /home/pi/HomelabShutdown/cronfile.tmp
+  crontab /home/pi/HomelabShutdown/cronfile.tmp
+  rm /home/pi/HomelabShutdown/cronfile.tmp
+  ;;
   
-    * ) echo "Skipped installing cron job" ;; 
+  * ) echo "Skipped installing cron job" ;; 
   esac
 EOF
 
