@@ -11,4 +11,4 @@ GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.wait_for_edge(24, GPIO.FALLING)
 
 #Run the shutdown
-subprocess.call(['sudo', 'shutdown', 'now'], shell=FALSE)
+subprocess.call(['sudo', 'shutdown', 'now'], shell=False)
