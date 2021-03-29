@@ -59,7 +59,7 @@ y|Y )
 	/usr/bin/crontab /home/pi/HomelabShutdown/cronfile.tmp
 	rm /home/pi/HomelabShutdown/cronfile.tmp
 EOF
-  ;;
+;;
 * ) echo 'User said not using shutdown button';;
 esac
 
