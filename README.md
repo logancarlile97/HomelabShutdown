@@ -8,7 +8,7 @@ This program is intended to be used on a Raspberry Pi as it takes use of its GPI
 If you would like to skip the manual setup steps then copy and paste this command in the terminal:
 * <code>curl https://raw.githubusercontent.com/logancarlile97/HomelabShutdown/main/install.sh | sudo bash</code>
 
-It will install the program to the <code>/home/pi</code> directory. It will also install dependencies and a cron job to run the program automatically upon boot.
+It will install the program to the <code>/home/pi</code> directory. It will also install dependencies and a cron job to run the program automatically upon boot. If the install script runs properly you should see the LCD display <code>Shutdown: A</code> on line one, and <code>Power On: B</code> on line two after a few minutes.
 
 ### Manual Install
 #### Dependencies
