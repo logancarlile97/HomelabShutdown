@@ -58,6 +58,7 @@ y|Y )
 	echo "@reboot cd /home/pi/HomelabShutdown && python3 ./shutdown-button.py" >> /home/pi/HomelabShutdown/cronfile.tmp
 	/usr/bin/crontab /home/pi/HomelabShutdown/cronfile.tmp
 	rm /home/pi/HomelabShutdown/cronfile.tmp
+EOF
   ;;
 * ) echo 'User said not using shutdown button';;
 esac
