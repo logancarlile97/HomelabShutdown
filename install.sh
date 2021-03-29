@@ -69,7 +69,7 @@ read -p 'Are you using a power indicator led connected to GPIO 14 (Pin 8)? (y/n)
 echo
 case $pwrIndctr in
 y|Y ) echo 'enable_uart=1' >> /boot/config.txt ;;
-* ) echo 'User said not using a power indicator led'
+* ) echo 'User said not using a power indicator led';;
 esac
 
 #Ask user to reboot the pi to make the program run
