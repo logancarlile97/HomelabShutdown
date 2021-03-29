@@ -19,7 +19,7 @@ cd /home/pi
 sudo -i -u pi bash << EOF
 
   #Clone the githup repo
-  git clone --branch powerIndicator+ShutdownButton https://github.com/logancarlile97/HomelabShutdown.git
+  git clone https://github.com/logancarlile97/HomelabShutdown.git
 
 
 EOF
