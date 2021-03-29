@@ -52,8 +52,8 @@ echo
 case $shtBtn in
 #Create a cron job to run shutdown-button.py upon boot
 y|Y )
-  sudo -i -u pi bash << EOF
-  touch /home/pi/HomelabShutdown/cronfile.tmp
+        sudo -i -u pi bash << EOF
+        touch /home/pi/HomelabShutdown/cronfile.tmp
 	/usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
 	echo "@reboot cd /home/pi/HomelabShutdown && python3 ./shutdown-button.py" >> /home/pi/HomelabShutdown/cronfile.tmp
 	/usr/bin/crontab /home/pi/HomelabShutdown/cronfile.tmp
