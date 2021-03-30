@@ -28,7 +28,6 @@ EOF
 echo 
 read -p 'Create a job to run program at boot? (y/n): ' crnJb <&1
 echo
-
 case $crnJb in
 
 #Create a cron job to run program upon boot
@@ -46,8 +45,32 @@ EOF
 * ) echo "Skipped installing cron job" ;; 
 esac
 
-#Delay to give user time to see previous message
-sleep 5
+#Ask user if they are using a shutdown button
+echo
+read -p 'Are you using a power button on GPIO 24 (Pin 18)? (y/n): ' shtBtn <&1
+echo
+case $shtBtn in
+#Create a cron job to run shutdown-button.py upon boot
+y|Y )
+        sudo -i -u pi bash << EOF
+        touch /home/pi/HomelabShutdown/cronfile.tmp
+	/usr/bin/crontab -l > /home/pi/HomelabShutdown/cronfile.tmp
+	echo "@reboot cd /home/pi/HomelabShutdown && python3 ./shutdown-button.py" >> /home/pi/HomelabShutdown/cronfile.tmp
+	/usr/bin/crontab /home/pi/HomelabShutdown/cronfile.tmp
+	rm /home/pi/HomelabShutdown/cronfile.tmp
+EOF
+;;
+* ) echo 'User said not using shutdown button';;
+esac
+
+#Ask user if they are using a power indicator
+echo
+read -p 'Are you using a power indicator led connected to GPIO 14 (Pin 8)? (y/n): ' pwrIndctr <&1
+echo
+case $pwrIndctr in
+y|Y ) echo 'enable_uart=1' >> /boot/config.txt ;;
+* ) echo 'User said not using a power indicator led';;
+esac
 
 #Ask user to reboot the pi to make the program run
 echo 
