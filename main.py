@@ -17,12 +17,6 @@ shtDwnCode = 'D'
 shtDwnCmd = 'sudo /usr/sbin/shutdown +1'
 log_file = "./logs.txt"
 
-#Start timeKeeper
-timeKeeper.initialize()
-
-#Record time and date program started to log
-dateToLog(log_file) 
-
 try:
     with open('logs.txt', 'a') as log:
         #Loop through main menu 
@@ -37,6 +31,12 @@ try:
             #If user enters A
             if(usrInpt == 'A'):
                 print(f'Selected Shutdown')
+                
+                #Start timeKeeper
+                timeKeeper.initialize()
+                
+                #Record time and date program started to log
+                dateToLog(log_file) 
                 
                 #Log that user selected shutdown
                 log.write(f'[{deltaStart()}] ')
@@ -90,6 +90,13 @@ try:
             #If user enters B
             elif(usrInpt == 'B'):
                 print(f'Selected Power On')
+                
+                #Start timeKeeper
+                timeKeeper.initialize()
+                
+                #Record time and date program started to log
+                dateToLog(log_file) 
+                
                 while(validInput == False):
                     lcdMessage('Selected','Power On')
                     lcdMessage('Continue: C', 'Back: D')
@@ -132,6 +139,13 @@ try:
            
             #If user enters the shutdown code
             elif (usrInpt == shtDwnCode):
+                
+                #Start timeKeeper
+                timeKeeper.initialize()
+
+                #Record time and date program started to log
+                dateToLog(log_file)
+                
                 log.write(f'[{deltaStart()}] ')
                 log.write(f'User entered {usrInpt} which is the program shutdown code, asking for confirmation\n')
                 log.flush()
