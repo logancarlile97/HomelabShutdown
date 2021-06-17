@@ -7,10 +7,7 @@ def keypadMsge():
     GPIO.setwarnings(False)
 
     #Holds the values entered on keypad
-    message = ''
-
-    #Holds whether the user has enter a message
-    noMessage = True
+    entry = ''
 
     #Key layout on keypad
     KEYS = [ ['1','2','3','A'],
@@ -34,8 +31,8 @@ def keypadMsge():
         for i in range(len(ROW)):
             GPIO.setup(ROW[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-        #Loop untill a message is entered by the user          
-        while(noMessage):
+        #Loop untill a entry is entered by the user          
+        while(True):
             
             #Loop through each column pin and set output to low 
             for j in range(len(COL)):
@@ -47,28 +44,19 @@ def keypadMsge():
                 for i in range(len(ROW)):
                     if GPIO.input(ROW[i]) == 0:
                         
-                        #For debuging Print the pressed key by refrenceing the KEYS matrix
-                        #print(KEYS[i][j])
-                        
-                        #If the key pressed is a pound then print, return, and clear the message 
+                        #If the key pressed is a pound then print, return, and clear the entry 
                         if (KEYS[i][j] == '#'):
                             
-                            #print(message) #For debuging
-                            
-                            #Return the user entered message
-                            return message
-                            message = ''
-
-                            #Set noMessage to False
-                            noMessage = False
+                            #Return the user entered entry
+                            return entry
                         
-                        #If the key pressed is a astrisk then clear message
+                        #If the key pressed is a astrisk then clear entry
                         elif (KEYS[i][j] == '*'):
-                            message = ''
+                            entry = ''
                         
-                        #Otherwise add inputed key to message
+                        #Otherwise add inputed key to entry
                         else:
-                            message += KEYS[i][j]
+                            entry += KEYS[i][j]
                             
                         #While a key is being held down this will loop
                         while(GPIO.input(ROW[i]) == 0):
@@ -83,15 +71,10 @@ def keypadMsge():
         #Cleanup GPIO pins when program finishes
         GPIO.cleanup(ROW + COL)
 
-    #Clean GPIO pins if user quits program
-    except KeyboardInterrupt:
-        GPIO.cleanup(ROW + COL)
-        return 'UserExit'
-
     #Print any other errors to terminal
     except Exception as e:
         print('Keypad test ran into an error')
         print('Exception: ' + str(e))
         GPIO.cleanup(ROW + COL)
 
-#print(keypadMsge())#Debuging
+
