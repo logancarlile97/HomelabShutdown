@@ -1,16 +1,17 @@
 from authentification import userVerified
 from CSV_Functions import get_row_count, get_remote_info
 from SSH_Subprocess import run_ssh_command
-import timeKeeper
-from timeKeeper import dateToLog
 import sys
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
 from configReader import configReader
+from logWriter import logWriter
 
 config = configReader('config.ini') #Get information from config file
+log = logWriter() #Initialize logWriter
+
 #Function to run program
-def runShutdown(file_name, log_file):
+def runShutdown(file_name):
 
     #Start with the row after the header info. 
     row_number = 1
@@ -39,11 +40,10 @@ def mainShutdown():
 
         #Set the file name and log file
         file_name = config.getShutdownConfig('shutdownCSVfile')
-        log_file = './logs.txt'
            
         #Make user input password to run the main program
         if (userVerified() == True):
-            runShutdown(file_name, log_file)
+            runShutdown(file_name)
             prgrmRan = True
 
         lcdMessage('Program has', 'Concluded')
@@ -67,16 +67,12 @@ try:
     # it will also record a new date as this is ment to be run on its own
     # This will only run if a user expicitly runs this program and passes the override argument
     if (len(sys.argv) == 2):
-        #Set the file name and log file
+
         file_name = config.getShutdownConfig('shutdownCSVfile')
-        log_file = './logs.txt'
         
         if (sys.argv[1] == userAuthOverride):
-            #Start timeKeeper
-            timeKeeper.initialize()
-
-            #Record time and date program started to log
-            dateToLog(log_file) 
+            
+            log.newEntry() #Log a new entry
 
             #Initilaize the lcd 
             lcdInit()
@@ -88,7 +84,7 @@ try:
             print(f'Authentication Override Detected!')
             print('Proceeding with program in 5 seconds')
             time.sleep(5)
-            runShutdown(file_name, log_file)
+            runShutdown(file_name)
             lcdMessage('Program has', 'Concluded')
             time.sleep(3)
             lcdClear()

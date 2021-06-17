@@ -32,3 +32,8 @@ class configReader:
         value = self.config.get('LCD Driver', valueKey) #Get value from config file
         value = ast.literal_eval(value) #Parse value into correct format
         return value #Return value
+
+    def getLogConfig(self, valueKey):
+        value = self.config.get('Log', valueKey) #Get value from config file
+        value = ast.literal_eval(value) #Parse value into correct format
+        return value #Return value
