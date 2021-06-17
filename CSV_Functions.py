@@ -45,10 +45,10 @@ def get_remote_info(csv_file, row_number):
 		rmt_usr = csv_list[2].strip()
 		sht_dwn_cmd = csv_list[3].strip()
 
-		log.write(f'Machine_Name = {machine_name}\n')
-		log.write(f'IP Address = {ip}\n')
-		log.write(f'Remote User = {rmt_usr}\n')
-		log.write(f'Shutdown Command = {sht_dwn_cmd}\n')
+		log.write(f'Machine_Name = {machine_name}')
+		log.write(f'IP Address = {ip}')
+		log.write(f'Remote User = {rmt_usr}')
+		log.write(f'Shutdown Command = {sht_dwn_cmd}')
 
 		return machine_name, ip, rmt_usr, sht_dwn_cmd
 	
