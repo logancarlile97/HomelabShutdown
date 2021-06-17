@@ -32,6 +32,3 @@ class configReader:
         value = self.config.get('LCD Driver', valueKey) #Get value from config file
         value = ast.literal_eval(value) #Parse value into correct format
         return value #Return value
-
-config = configReader('config.ini')
-print(type(config.getAuthConfig('maxAttempts')))

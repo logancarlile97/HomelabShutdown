@@ -6,7 +6,9 @@ from timeKeeper import dateToLog
 import sys
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
+from configReader import configReader
 
+config = configReader('config.ini') #Get information from config file
 #Function to run program
 def runShutdown(file_name, log_file):
 
@@ -25,6 +27,7 @@ def runShutdown(file_name, log_file):
 
 #Check for user verification
 def mainShutdown(): 
+    global config
     global prgrmRan
     prgrmRan = False
 
@@ -35,7 +38,7 @@ def mainShutdown():
         lcdMessage('Homelab Shutdown', '')
 
         #Set the file name and log file
-        file_name = './shutdown.csv'
+        file_name = config.getShutdownConfig('shutdownCSVfile')
         log_file = './logs.txt'
            
         #Make user input password to run the main program
@@ -57,7 +60,7 @@ def shutdownRan():
 
 
 
-userAuthOverride = 'noAuth'
+userAuthOverride = config.getShutdownConfig('authOverrrideArgument')
 try:    
     #See if the userAuthOverride argument is passed
     # if this is passed then it will overrride all authentification 
@@ -65,7 +68,7 @@ try:
     # This will only run if a user expicitly runs this program and passes the override argument
     if (len(sys.argv) == 2):
         #Set the file name and log file
-        file_name = './shutdown.csv'
+        file_name = config.getShutdownConfig('shutdownCSVfile')
         log_file = './logs.txt'
         
         if (sys.argv[1] == userAuthOverride):
