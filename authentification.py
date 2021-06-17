@@ -6,19 +6,18 @@ from lcd_driver import lcdMessage, lcdClear
 def userVerified():
     #Pin needed from user to authorize access
     pin = '1234'
-    loop = True
     attempt = 1
     maxAttempts = 3
     timeOut = 1
     lockoutTime = 5
-    exitPrgrm = 'DDD'
+    exitAuth = 'DDD'
     #Tell user to input pin on keypad
     print('User Authentification Required!')
     print('Please input your pin on the keypad')
 
    
 
-    while(loop):    
+    while(True):    
         try:
             
             #open the log
@@ -42,21 +41,15 @@ def userVerified():
                 lcdMessage('', 'Analysing...')
                 time.sleep(1)
                 
-                #If keyboard.py detects user quit program quit this program
-                if (code == 'UserExit'):
-                    loop = False
-                    lcdClear()
-                    #If a user attempts to exit program Return False 
-                    return False
-                
-                #If user enters the program exit code then pass False to mainShutdown
-                elif (code == exitPrgrm):
-                    loop = False
+                #If user enters the authenticator exit code then pass False to mainShutdown
+                if (code == exitAuth):
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User entered {code} which is the exit code\n')
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'Exiting program\n')
+                    
                     return False
+
                 #Check to see if code is equal to pin
                 elif (code == pin):
                     print('User verified')
@@ -67,9 +60,8 @@ def userVerified():
                     log.write(f'[{deltaStart()}] ')
                     log.write(f'User was verified proceeding with program\n')
                     
-                    loop = False
                     return True
-            
+
                 #See if user made maximum attempts
                 elif (attempt == maxAttempts):
                     
@@ -104,17 +96,10 @@ def userVerified():
             
             #Close the log
             log.close()
-        except KeyboardInterrupt:
-            print('User closed program')
-            loop = False
-            log.close()
         except Exception as e:
 
 		    #Tell the console something went wrong.
             print(f'Something went wrong while running the authenticator: {str(e)} \n')
-            
-            #This is to prevent an infinite loop when an exception occurs
-            loop = False
 
             #Log the fail
             with open('logs.txt', 'a') as log:
@@ -126,4 +111,6 @@ def userVerified():
 
             #Close log
             log.close()
+
+            break
 #print(userVerified()) #Debugging

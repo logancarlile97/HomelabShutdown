@@ -20,7 +20,7 @@ def mainPowerOn():
             row_count = CSV_Functions.get_row_count(csv_file)
 
             #loop through each line of csv_file running each command
-            while row_number < row_count:
+            while (row_number < row_count):
                 #Get the power on info
                 machine_name, ip_address, command = CSV_Functions.getPwrOnInfo(csv_file, row_number)
 
@@ -86,9 +86,6 @@ def mainPowerOn():
                 #Set row_number to next row
                 row_number += 1
         log.close()
-    except KeyboardInterrupt:
-        print(f'User exited program')
-    
     except Exception as e:
         with open(log_file, 'a') as log:
             
@@ -99,36 +96,40 @@ def mainPowerOn():
         print(f'Exception: {e}')
 
 #For if user runs in standalone mode
-
 stndAlne = 'standalone'
-if (len(sys.argv) == 2):	
-#Set the file name and log file
-    file_name = './test.csv'
-    log_file = './logs.txt'
-    
 
-    if (sys.argv[1] == stndAlne):
-        #Start timeKeeper
-        timeKeeper.initialize()
-
-        #Record time and date program started to log
-        dateToLog(log_file) 
-
-        #Initilaize the lcd 
-        lcdInit()
-    
-        #Clear the lcd
-        lcdClear()
+try:        
+    if (len(sys.argv) == 2):	
         
-        lcdMessage('Homelab Power On', '')
-        print(f'Standalone Mode Detected!')
-        print('Proceeding with program in 5 seconds')
-        time.sleep(5)
-        mainPowerOn()
-        lcdMessage('Program has', 'Concluded')
-        time.sleep(3)
-        lcdClear()
-    else:
-        print(f'Invalid argument, standalone command is: {stndAlne}')
-elif (len(sys.argv) != 1):
-    print(f'To run powerOn in standalone mode use argument {stndAlne}') 
+        #Set the log file name
+        log_file = './logs.txt'
+        
+        if (sys.argv[1] == stndAlne):
+            #Start timeKeeper
+            timeKeeper.initialize()
+
+            #Record time and date program started to log
+            dateToLog(log_file) 
+
+            #Initilaize the lcd 
+            lcdInit()
+        
+            #Clear the lcd
+            lcdClear()
+            
+            lcdMessage('Homelab Power On', '')
+            print(f'Standalone Mode Detected!')
+            print('Proceeding with program in 5 seconds')
+            time.sleep(5)
+            mainPowerOn()
+            lcdMessage('Program has', 'Concluded')
+            time.sleep(3)
+            lcdClear()
+        else:
+            print(f'Invalid argument, standalone command is: {stndAlne}')
+    elif (len(sys.argv) != 1):
+        print(f'To run powerOn in standalone mode use argument {stndAlne}') 
+
+#If user exits
+except KeyboardInterrupt:
+    print(f'User exited program')

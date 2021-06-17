@@ -1,5 +1,4 @@
 from keypad import keypadMsge 
-import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
 import timeKeeper
 from timeKeeper import dateToLog, deltaStart
@@ -185,11 +184,6 @@ try:
                     
                     else:
                         lcdMessage('Invalid Input', ' ')
-            
-            #If keyboard.py detects user quit program then quit this program
-            elif (usrInpt == 'UserExit'):
-                loop = False
-                lcdClear()
 
             else:
                 lcdClear()
