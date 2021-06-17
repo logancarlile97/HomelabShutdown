@@ -5,11 +5,15 @@ import CSV_Functions
 from lcd_driver import lcdClear, lcdInit, lcdMessage
 import sys
 import time
+from configReader import configReader
+
+config = configReader('config.ini') #Get information from config file
 
 def mainPowerOn():
-
+    global config
+    
     try:
-        csv_file = 'powerOn.csv'
+        csv_file = config.getPowerOnConfig('powerOnCSVfile')
         log_file = 'logs.txt'
 
         lcdMessage('Homelab Power On', 'Proceeding...')
@@ -96,7 +100,7 @@ def mainPowerOn():
         print(f'Exception: {e}')
 
 #For if user runs in standalone mode
-stndAlne = 'standalone'
+stndAlne = config.getPowerOnConfig('standaloneArgument')
 
 try:        
     if (len(sys.argv) == 2):	

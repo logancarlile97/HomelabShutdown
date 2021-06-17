@@ -2,15 +2,19 @@ from keypad import keypadMsge
 import time
 from timeKeeper import deltaStart
 from lcd_driver import lcdMessage, lcdClear
+from configReader import configReader
 
 def userVerified():
+    config = configReader('config.ini') #Get information from config file
+
     #Pin needed from user to authorize access
-    pin = '1234'
+    pin = config.getAuthConfig('pin')
+    maxAttempts = config.getAuthConfig('maxAttempts')
+    lockoutTime = config.getAuthConfig('lockoutTime')
+    exitAuth = config.getAuthConfig('exitAuthenticatorCode')
+
     attempt = 1
-    maxAttempts = 3
     timeOut = 1
-    lockoutTime = 5
-    exitAuth = 'DDD'
     #Tell user to input pin on keypad
     print('User Authentification Required!')
     print('Please input your pin on the keypad')
@@ -113,4 +117,3 @@ def userVerified():
             log.close()
 
             break
-#print(userVerified()) #Debugging
