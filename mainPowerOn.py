@@ -87,29 +87,19 @@ def mainPowerOn():
         print(f'mainPowerOn ran into an error')
         print(f'Exception: {e}')
 
-#For if user runs in standalone mode
-stndAlne = config.getPowerOnConfig('standaloneArgument')
-
 try:        
-    if (len(sys.argv) == 2):	
-        
-        if (sys.argv[1] == stndAlne):
-            log.newEntry() #Log that a new entry is being made
-            lcdInit() #Initilaize the lcd 
-            lcdClear() #Clear the lcd
-            
-            lcdMessage('Homelab Power On', '')
-            print(f'Standalone Mode Detected!')
-            print('Proceeding with program in 5 seconds')
-            time.sleep(5)
-            mainPowerOn()
-            lcdMessage('Program has', 'Concluded')
-            time.sleep(3)
-            lcdClear()
-        else:
-            print(f'Invalid argument, standalone command is: {stndAlne}')
-    elif (len(sys.argv) != 1):
-        print(f'To run powerOn in standalone mode use argument {stndAlne}') 
+    if (__name__ == "__main__"):	
+        log.newEntry() #Log that a new entry is being made
+        lcdInit() #Initilaize the lcd 
+        lcdClear() #Clear the lcd
+        lcdMessage('Homelab Power On', '')
+        print(f'Standalone Mode Detected!')
+        print('Proceeding with program in 5 seconds')
+        time.sleep(5)
+        mainPowerOn()
+        lcdMessage('Program has', 'Concluded')
+        time.sleep(3)
+        lcdClear()
 
 #If user exits
 except KeyboardInterrupt:

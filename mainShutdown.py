@@ -59,43 +59,27 @@ def shutdownRan():
     return prgrmRan
 
 
-
-userAuthOverride = config.getShutdownConfig('authOverrideArgument')
 try:    
-    #See if the userAuthOverride argument is passed
-    # if this is passed then it will overrride all authentification 
-    # it will also record a new date as this is ment to be run on its own
-    # This will only run if a user expicitly runs this program and passes the override argument
-    if (len(sys.argv) == 2):
+    if (__name__ == "__main__"):
 
         file_name = config.getShutdownConfig('shutdownCSVfile')
-        
-        if (sys.argv[1] == userAuthOverride):
-            
-            log.newEntry() #Log a new entry
 
-            #Initilaize the lcd 
-            lcdInit()
-        
-            #Clear the lcd
-            lcdClear()
+        log.newEntry() #Log a new entry
+        lcdInit() #Initilaize the lcd
+        lcdClear() #Clear the lcd
+        lcdMessage('Homelab Shutdown', '')
+        print(f'Authentication Override Detected!')
+        print('Proceeding with program in 5 seconds')
+        time.sleep(5)
+        runShutdown(file_name)
+        lcdMessage('Program has', 'Concluded')
+        time.sleep(3)
+        lcdClear()
 
-            lcdMessage('Homelab Shutdown', '')
-            print(f'Authentication Override Detected!')
-            print('Proceeding with program in 5 seconds')
-            time.sleep(5)
-            runShutdown(file_name)
-            lcdMessage('Program has', 'Concluded')
-            time.sleep(3)
-            lcdClear()
-        else:
-            print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
-
-    #If an argument is passed and is not an userAuthOverride return an error and exit program
-    elif (len(sys.argv) != 1):
-        print(f'Invalid Arguments! User authentification override argument is {userAuthOverride}')
-        print(f'This program takes one argument and you passed {len(sys.argv)-1}')
 except KeyboardInterrupt:
     print('User quit program')
     time.sleep(1)
     lcdClear()
+
+except Exception as e:
+    print(f"An exception occured: {e}")
