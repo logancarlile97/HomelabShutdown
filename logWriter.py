@@ -19,7 +19,7 @@ class logWriter:
             log.write('\n')
             log.write('-----------------------\n')
             log.write('| !!!New log entry!!! |\n')
-            log.write(f'| {self.time.getDate} |\n')
+            log.write(f'| {self.time.getDate()} |\n')
             log.write('-----------------------\n')
             log.write('\n')
             log.flush()

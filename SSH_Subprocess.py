@@ -39,7 +39,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 		log.write('Ping Output: ')
 		
 		ping_process = subprocess.run(ping_command, shell=True, capture_output=True, text = True)
-		log.write(ping_process.stdout.decode('utf-8')) #Get output of ping command
+		log.write(ping_process.stdout) #Get output of ping command
 		log.write(f'End of Ping Output')
 		
 		#Record the return code as ping_code
@@ -64,7 +64,7 @@ def run_ssh_command(machine_name, ip, rmt_usr, sht_dwn_cmd):
 			#Calls a subprocess to run the ssh command and logs it
 			log.write('SSH Output: ')
 			ssh_process = subprocess.run(ssh_command, shell=True, capture_output=True, text = True)
-			log.write(ssh_process.stdout.decode('utf-8')) #Get output of ssh command
+			log.write(ssh_process.stdout) #Get output of ssh command
 			log.write(f'End of SSH Output')
 			lcdMessage('Finished', 'Proceeding...')	
 			#Logs the return code

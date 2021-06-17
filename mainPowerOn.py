@@ -44,7 +44,7 @@ def mainPowerOn():
             #Run the ping command and record output to log
             log.write('Ping Output: ')
             ping_process = subprocess.run(ping_command, shell=True, capture_output=True, text = True)
-            log.write(ping_process.stdout.decode('utf-8')) #Get output of ping command
+            log.write(ping_process.stdout) #Get output of ping command
             log.write(f'End of Ping Output')
             
             #Record the return code as ping_code
@@ -62,7 +62,7 @@ def mainPowerOn():
                 #Calls a subprocess to run the ssh command and logs it
                 log.write('Power On Command Output: ')
                 pwrOnCmd = subprocess.run(command, shell=True, capture_output=True, text = True)
-                log.write(pwrOnCmd.stdout.decode('utf-8')) #Get output of power on command
+                log.write(pwrOnCmd.stdout) #Get output of power on command
                 log.write(f'End of Power On Command Output')
                 lcdMessage('Finished', 'Proceeding...')	
                 log.write(f"The return code is: {pwrOnCmd.returncode}") #Logs the return code

@@ -131,7 +131,7 @@ try:
                     print('User Continued')
 
                     proc = subprocess.run(shtDwnCmd, shell = True, text = True, capture_output=True)
-                    log.write(proc.stdout.decode("utf-8"))
+                    log.write(proc.stdout)
                 
                 #Check if user goes back
                 elif(usrInpt == 'D'):
