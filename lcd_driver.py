@@ -27,7 +27,7 @@ def lcdMessage(top, bottom):
         adjBottom = "\n" + bottom.ljust(16)
 
     lcd.message = adjTop + adjBottom
-    time.sleep(1)
+    time.sleep(0.5)
 
 def lcdClear():
     lcd.clear()

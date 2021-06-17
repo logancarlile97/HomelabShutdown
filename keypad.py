@@ -1,7 +1,11 @@
 import RPi.GPIO as GPIO
 import time
+from configReader import configReader
+
+config = configReader('config.ini')
 
 def keypadMsge():
+    global config
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
@@ -10,15 +14,12 @@ def keypadMsge():
     entry = ''
 
     #Key layout on keypad
-    KEYS = [ ['1','2','3','A'],
-            ['4','5','6','B'],
-            ['7','8','9','C'],
-            ['*','0','#','D'] ]
+    KEYS = config.getKeypadConfig('keypadLayout')
 
     #Set the GPIO pins for colums and rows, 
     # make sure they are in the right order or keys will be backwards
-    ROW = [19,13,6,5]
-    COL = [21,20,16,12]
+    ROW = config.getKeypadConfig('rowPins')
+    COL = config.getKeypadConfig('columnPins')
 
     try:
 
