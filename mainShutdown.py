@@ -60,7 +60,7 @@ def shutdownRan():
 
 
 
-userAuthOverride = config.getShutdownConfig('authOverrrideArgument')
+userAuthOverride = config.getShutdownConfig('authOverrideArgument')
 try:    
     #See if the userAuthOverride argument is passed
     # if this is passed then it will overrride all authentification 
