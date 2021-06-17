@@ -8,6 +8,6 @@ class timeKeeper:
     def getLogTime(self):
         return str(datetime.now()) #Return the current time 
 
-    def getDate():
+    def getDate(self):
         crntDate = datetime.now().strftime("%m/%d/%Y %H:%M:%S") #Get formated verision of current time
         return crntDate
