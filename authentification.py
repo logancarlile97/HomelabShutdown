@@ -12,9 +12,8 @@ def userVerified():
     maxAttempts = config.getAuthConfig('maxAttempts')
     lockoutTime = config.getAuthConfig('lockoutTime')
     exitAuth = config.getAuthConfig('exitAuthenticatorCode')
-
     attempt = 1
-    timeOut = 1
+
     #Tell user to input pin on keypad
     print('User Authentification Required!')
     print('Please input your pin on the keypad')
@@ -69,8 +68,6 @@ def userVerified():
                 #See if user made maximum attempts
                 elif (attempt == maxAttempts):
                     
-                    #Increase lockoutTime each time user makes make attempts
-                    lockoutTime = timeOut * 5
                     print(f'Max attempts made, try again in {lockoutTime} seconds')
                     
                     lcdMessage('', f'{maxAttempts} Attempts Made')
@@ -83,7 +80,6 @@ def userVerified():
                     log.flush()
                     #Wait for lockoutTime to expire
                     time.sleep(lockoutTime)
-                    timeOut += 1
                     attempt = 1
                     print(f'Try again')
 
