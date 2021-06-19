@@ -1,14 +1,17 @@
 from authentification import userVerified
 from CSV_Functions import get_row_count, get_remote_info
 from SSH_Subprocess import run_ssh_command
-import timeKeeper
-from timeKeeper import dateToLog
 import sys
 import time
 from lcd_driver import lcdInit, lcdMessage, lcdClear
+from configReader import configReader
+from logWriter import logWriter
+
+config = configReader('config.ini') #Get information from config file
+log = logWriter() #Initialize logWriter
 
 #Function to run program
-def runShutdown(file_name, log_file):
+def runShutdown(file_name):
 
     #Start with the row after the header info. 
     row_number = 1
@@ -25,6 +28,7 @@ def runShutdown(file_name, log_file):
 
 #Check for user verification
 def mainShutdown(): 
+    global config
     global prgrmRan
     prgrmRan = False
 
@@ -35,12 +39,11 @@ def mainShutdown():
         lcdMessage('Homelab Shutdown', '')
 
         #Set the file name and log file
-        file_name = './shutdown.csv'
-        log_file = './logs.txt'
+        file_name = config.getShutdownConfig('shutdownCSVfile')
            
         #Make user input password to run the main program
         if (userVerified() == True):
-            runShutdown(file_name, log_file)
+            runShutdown(file_name)
             prgrmRan = True
 
         lcdMessage('Program has', 'Concluded')
@@ -56,47 +59,27 @@ def shutdownRan():
     return prgrmRan
 
 
-
-userAuthOverride = 'noAuth'
 try:    
-    #See if the userAuthOverride argument is passed
-    # if this is passed then it will overrride all authentification 
-    # it will also record a new date as this is ment to be run on its own
-    # This will only run if a user expicitly runs this program and passes the override argument
-    if (len(sys.argv) == 2):
-        #Set the file name and log file
-        file_name = './shutdown.csv'
-        log_file = './logs.txt'
-        
-        if (sys.argv[1] == userAuthOverride):
-            #Start timeKeeper
-            timeKeeper.initialize()
+    if (__name__ == "__main__"):
 
-            #Record time and date program started to log
-            dateToLog(log_file) 
+        file_name = config.getShutdownConfig('shutdownCSVfile')
 
-            #Initilaize the lcd 
-            lcdInit()
-        
-            #Clear the lcd
-            lcdClear()
+        log.newEntry() #Log a new entry
+        lcdInit() #Initilaize the lcd
+        lcdClear() #Clear the lcd
+        lcdMessage('Homelab Shutdown', '')
+        print(f'Authentication Override Detected!')
+        print('Proceeding with program in 5 seconds')
+        time.sleep(5)
+        runShutdown(file_name)
+        lcdMessage('Program has', 'Concluded')
+        time.sleep(3)
+        lcdClear()
 
-            lcdMessage('Homelab Shutdown', '')
-            print(f'Authentication Override Detected!')
-            print('Proceeding with program in 5 seconds')
-            time.sleep(5)
-            runShutdown(file_name, log_file)
-            lcdMessage('Program has', 'Concluded')
-            time.sleep(3)
-            lcdClear()
-        else:
-            print(f'Invalid Argument! User authentification override argument is {userAuthOverride}')
-
-    #If an argument is passed and is not an userAuthOverride return an error and exit program
-    elif (len(sys.argv) != 1):
-        print(f'Invalid Arguments! User authentification override argument is {userAuthOverride}')
-        print(f'This program takes one argument and you passed {len(sys.argv)-1}')
 except KeyboardInterrupt:
     print('User quit program')
     time.sleep(1)
     lcdClear()
+
+except Exception as e:
+    print(f"An exception occured: {e}")
