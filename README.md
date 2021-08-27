@@ -1,3 +1,5 @@
+# This program has been depreciated as a replacment has been made for it. This replacment can be found <a href ="https://github.com/logancarlile97/HomelabPowerController">here</a>
+
 # Homelab Shutdown/Power On
 Program to shutdown and power on Homelab servers via ssh
 
